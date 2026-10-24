@@ -10,7 +10,7 @@ COPY frontend/ ./
 RUN npm run build
 
 # --- 2. Backend build, with the SPA as static resources ---
-FROM eclipse-temurin:21-jdk-alpine AS backend
+FROM eclipse-temurin:24-jdk-alpine AS backend
 WORKDIR /app/backend
 COPY backend/.mvn/ .mvn/
 COPY backend/mvnw backend/pom.xml ./
@@ -21,7 +21,7 @@ RUN ./mvnw -q -B -DskipTests package \
     && java -Djarmode=tools -jar target/*.jar extract --layers --launcher --destination target/extracted
 
 # --- 3. Runtime: JRE only, non-root ---
-FROM eclipse-temurin:21-jre-alpine
+FROM eclipse-temurin:24-jre-alpine
 RUN addgroup -S stepfree && adduser -S stepfree -G stepfree
 WORKDIR /app
 # Layered copy: dependencies change rarely, so rebuilds reuse those layers.
