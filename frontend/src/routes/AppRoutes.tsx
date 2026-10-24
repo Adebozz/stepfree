@@ -3,6 +3,8 @@ import { Route, Routes } from 'react-router'
 import { RequireAuth } from '../components/RequireAuth'
 import { AppLayout } from '../layouts/AppLayout'
 import { AccountPage } from '../pages/AccountPage'
+import { AlertsPage } from '../pages/AlertsPage'
+import { DashboardPage } from '../pages/DashboardPage'
 import { HomePage } from '../pages/HomePage'
 import { JourneyDetailsPage } from '../pages/JourneyDetailsPage'
 import { NotFoundPage } from '../pages/NotFoundPage'
@@ -22,6 +24,22 @@ export function AppRoutes() {
         <Route path="stations/:id" element={<StationPage />} />
         <Route path="sign-in" element={<SignInPage />} />
         <Route path="register" element={<RegisterPage />} />
+        <Route
+          path="dashboard"
+          element={
+            <RequireAuth>
+              <DashboardPage />
+            </RequireAuth>
+          }
+        />
+        <Route
+          path="alerts"
+          element={
+            <RequireAuth>
+              <AlertsPage />
+            </RequireAuth>
+          }
+        />
         <Route
           path="saved"
           element={

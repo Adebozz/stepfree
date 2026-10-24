@@ -56,9 +56,11 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - [x] Verified live against TfL with Mailpit (2026-10-24)
 
 ## Phase 5 — UI refinement and mapping
-- [ ] Leaflet map using TfL `lineString` geometry only
-- [ ] Notification centre, dashboard, settings
-- [ ] Accessibility audit (axe + keyboard + screen reader spot checks)
+- [x] Leaflet map using TfL `lineString` geometry only (lazy-loaded; legs without geometry are listed, never drawn as straight lines)
+- [x] Notification centre (`/alerts`, navbar unread count), dashboard (`/dashboard`), settings (alert settings on `/account`)
+- [x] Accessibility audit: axe-core in unit tests (8 pages/components) and in a real browser with colour contrast (12 pages, desktop + mobile); keyboard-only journey planning and skip link tested
+- [~] Screen reader: accessible names, roles and descriptions are asserted in tests; a manual VoiceOver/NVDA pass has not been done
+- [x] Verified end-to-end in a browser against live TfL (2026-10-24)
 
 ## Phase 6 — Production readiness
 - [ ] GitHub Actions (backend + frontend), dependency scanning
@@ -79,3 +81,5 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - A heading-less station notice whose text TfL edits is seen as resolved + new (there is nothing else stable to key it on).
 - Email delivery is at-least-once: a crash between SMTP accepting a message and the row being marked SENT re-sends it.
 - Monitoring only runs while the backend process is awake (risk R1, Phase 6).
+- The route map uses OpenStreetMap's public tiles, which suit low traffic only (OSM tile policy, checked 2026-10-24). Heavy use would need a tile provider. Tests never request real tiles.
+- The main JS bundle is ~520 kB (160 kB gzipped); Leaflet is split out and loaded only on journey details.

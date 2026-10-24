@@ -2,7 +2,7 @@
 
 Accessible journey planning and disruption monitoring for London, built on the official TfL Unified API.
 
-> **Status: Phase 4 of 6 complete.** Step-free journey planning, station accessibility (including lift outages), live line status and disruptions, accounts, saved journeys, and disruption monitoring with in-app and email alerts work end to end. See [`docs/implementation-checklist.md`](docs/implementation-checklist.md).
+> **Status: Phase 5 of 6 complete.** Step-free journey planning, station accessibility (including lift outages), live line status and disruptions, accounts, saved journeys, disruption monitoring with in-app and email alerts, a dashboard, and route maps work end to end. See [`docs/implementation-checklist.md`](docs/implementation-checklist.md).
 
 ## The problem
 
@@ -50,6 +50,7 @@ No TfL key is needed for development (anonymous limit: 50 requests/min). For mor
 ```bash
 cd backend && ./mvnw test     # needs Docker running
 cd frontend && npm test && npm run lint && npm run typecheck
+cd frontend && npx playwright install chromium && npm run test:e2e   # browser tests, API mocked
 ```
 
 ## Documentation

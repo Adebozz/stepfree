@@ -58,6 +58,8 @@ function FactList({ facts, label }: { facts: Fact[]; label: string }) {
 
 function Section({ section, showHeading }: { section: StationSection; showHeading: boolean }) {
   const noAccessibilityData = section.accessibility.every((fact) => fact.value === null)
+  // Under the h2; one level deeper when each hub member gets its own h3.
+  const SubHeading = showHeading ? 'h4' : 'h3'
   return (
     <section aria-label={`${section.name} ${section.modes.map(modeLabel).join(', ')}`} className="space-y-4">
       {showHeading && (
@@ -66,7 +68,7 @@ function Section({ section, showHeading }: { section: StationSection; showHeadin
         </h3>
       )}
       <div>
-        <h4 className="mb-2 text-sm font-semibold text-navy-900">Accessibility</h4>
+        <SubHeading className="mb-2 text-sm font-semibold text-navy-900">Accessibility</SubHeading>
         {noAccessibilityData && (
           <p className="mb-2 flex gap-2 text-sm text-slate-700">
             <Info aria-hidden="true" className="mt-0.5 size-4 shrink-0" />
@@ -87,7 +89,7 @@ function Section({ section, showHeading }: { section: StationSection; showHeadin
         )}
       </div>
       <div>
-        <h4 className="mb-2 text-sm font-semibold text-navy-900">Facilities</h4>
+        <SubHeading className="mb-2 text-sm font-semibold text-navy-900">Facilities</SubHeading>
         {section.facilities.length > 0 ? (
           <FactList facts={section.facilities} label={`Facilities at ${section.name}`} />
         ) : (

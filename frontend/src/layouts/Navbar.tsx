@@ -1,6 +1,7 @@
 import { NavLink, useNavigate } from 'react-router'
 
 import { useCurrentUser, useSignOut } from '../api/account'
+import { useAlerts } from '../api/notifications'
 
 const navLinkClass = ({ isActive }: { isActive: boolean }) =>
   `block rounded-md px-3 py-2 text-sm font-medium ${isActive ? 'bg-navy-700 text-white' : 'text-navy-100 hover:bg-navy-800 hover:text-white'}`
@@ -24,12 +25,15 @@ export function Navbar() {
   const signOut = useSignOut()
   const navigate = useNavigate()
   const signedIn = Boolean(user.data)
-  const links = [
+  const unread = useAlerts(signedIn).data?.unreadCount ?? 0
+  const links: { to: string; label: string; end: boolean; badge?: number }[] = [
     { to: '/', label: 'Plan a journey', end: true },
     { to: '/status', label: 'Live status', end: false },
     ...(signedIn
       ? [
+          { to: '/dashboard', label: 'Dashboard', end: false },
           { to: '/saved', label: 'Saved journeys', end: false },
+          { to: '/alerts', label: 'Alerts', end: false, badge: unread },
           { to: '/account', label: 'Account', end: false },
         ]
       : []),
@@ -46,8 +50,19 @@ export function Navbar() {
           <ul className="flex flex-wrap gap-1">
             {links.map((link) => (
               <li key={link.to}>
-                <NavLink to={link.to} end={link.end} className={navLinkClass}>
+                <NavLink
+                  to={link.to}
+                  end={link.end}
+                  className={navLinkClass}
+                  // One label, not visible text + an sr-only span: browsers join those with a stray space ("Alerts , 1 unread").
+                  aria-label={link.badge ? `${link.label}, ${link.badge} unread` : undefined}
+                >
                   {link.label}
+                  {link.badge ? (
+                    <span aria-hidden="true" className="ml-1.5 rounded-full bg-amber-400 px-1.5 py-0.5 text-xs font-bold text-navy-900">
+                      {link.badge}
+                    </span>
+                  ) : null}
                 </NavLink>
               </li>
             ))}

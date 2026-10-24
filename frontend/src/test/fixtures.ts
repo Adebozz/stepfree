@@ -1,4 +1,4 @@
-import type { JourneyOption, LineStatus, SavedJourney, StationAccessibility, User } from '../api/types'
+import type { JourneyAlert, JourneyOption, LineStatus, SavedJourney, StationAccessibility, User } from '../api/types'
 
 /** Shaped like real backend responses for Wembley Park → King's Cross (step-free), 23 Oct 2026. */
 export const stepFreeJourney: JourneyOption = {
@@ -107,4 +107,25 @@ export const savedCommute: SavedJourney = {
   ],
   createdAt: '2026-10-24T09:05:00Z',
   updatedAt: '2026-10-24T09:05:00Z',
+}
+
+export const metropolitanAlert: JourneyAlert = {
+  id: '7a1e0c3d-3333-4b2a-9c11-1f2e3d4c0003',
+  journeyId: savedCommute.id,
+  journeyName: 'Home to work',
+  type: 'NEW',
+  title: 'Metropolitan: Minor Delays',
+  message: 'Metropolitan Line: Minor delays between Harrow-on-the-Hill and Uxbridge due to train cancellations.',
+  createdAt: '2026-10-24T14:21:26Z',
+  read: false,
+}
+
+export const resolvedLiftAlert: JourneyAlert = {
+  ...metropolitanAlert,
+  id: '7a1e0c3d-4444-4b2a-9c11-1f2e3d4c0004',
+  type: 'RESOLVED',
+  title: 'No longer reported: Lift out of service',
+  message: 'TfL no longer reports this disruption. It previously said: WEMBLEY PARK STATION: no lift service.',
+  createdAt: '2026-10-24T13:00:00Z',
+  read: true,
 }

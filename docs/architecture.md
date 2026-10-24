@@ -102,6 +102,12 @@ EmailDispatcher: claim due rows (FOR UPDATE SKIP LOCKED) → send with no transa
 
 Users control monitoring per journey (saved-journey switch) and globally, plus email, in `notification_preference` (absent row = email off, monitoring on).
 
+## Frontend additions (Phase 5)
+
+- **Map**: `JourneyMapSection` lazy-loads `JourneyMap` (React Leaflet) so Leaflet's ~155 kB only loads on journey details. It draws `leg.path` from TfL and nothing else; legs without a shape are counted in a note. The map has an accessible name pointing to the step-by-step directions, which are the text equivalent.
+- **Alerts**: `/alerts` (notification centre) and `/dashboard` poll every 60 s while open; the navbar shows the unread count. `MonitoringNote` says when journeys were last checked, so an empty list can't be mistaken for "all clear" if checks stopped.
+- User-scoped caches (`saved-journeys`, `notifications`) are dropped on sign-in and sign-out.
+
 ## Cross-cutting decisions
 
 | Concern | Decision |

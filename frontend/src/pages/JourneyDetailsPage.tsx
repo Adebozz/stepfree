@@ -6,6 +6,7 @@ import { EmptyState } from '../components/EmptyState'
 import { ErrorState } from '../components/ErrorState'
 import { FreshnessNote } from '../components/FreshnessNote'
 import { JourneyDetails } from '../components/JourneyDetails'
+import { JourneyMapSection } from '../components/JourneyMapSection'
 import { LineProblems } from '../components/JourneyResults'
 import { LoadingSkeleton } from '../components/LoadingSkeleton'
 import { RouteChain } from '../components/RouteChain'
@@ -113,6 +114,8 @@ export function JourneyDetailsPage() {
       <LineProblems lines={lineStatuses} />
 
       <SaveJourneyPanel search={search} journey={journey} />
+
+      <JourneyMapSection legs={journey.legs} />
 
       <div className="rounded-xl border border-navy-100 bg-white p-5 shadow-sm">
         <JourneyDetails journey={journey} />

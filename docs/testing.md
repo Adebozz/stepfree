@@ -59,6 +59,23 @@ Added in Phase 4:
 
 A mutation check was run: removing the "already alerted at this revision" check makes two integration tests fail.
 
+## Frontend suite (Phase 5): 86 tests, all passing
+
+Added in Phase 5: `geometry.test.ts` (4: only TfL shapes drawn, bad points dropped, stops, bounds), `JourneyMapSection.test.tsx` (2: no invented map when TfL has no geometry), `AlertsPage.test.tsx` (4), `DashboardPage.test.tsx` (1), `Navbar.test.tsx` (2: unread count in the link name, no alert requests when signed out), `a11y.test.tsx` (7: axe-core on every page; colour contrast is checked in the browser). Pages under test also run axe.
+
+## Browser suite (Playwright, Phase 5): 30 tests, all passing
+
+`npm run test:e2e`: Chromium desktop and Pixel 7, against the Vite dev server with the API mocked in the browser (`e2e/mockApi.ts`, built from the same fixtures as the unit tests), so it needs no backend or TfL and runs in CI. Map tiles are never fetched.
+
+| Spec | Covers |
+|---|---|
+| `accessibility.spec.ts` | axe-core WCAG 2.1 A/AA **including colour contrast** on 12 pages at both sizes; skip link moves focus to main; a journey can be planned with the keyboard alone |
+| `flows.spec.ts` | Guarded `/alerts` → sign in (wrong password message) → back to alerts → mark read updates the navbar count → turn email alerts on; plan → map draws TfL's shape and markers with OSM attribution → save |
+
+`npm run test:e2e:live` (`e2e/live/full-stack.spec.ts`) drives the real stack against live TfL: register, turn on email, plan and save Wembley Park → King's Cross, wait for the scheduler's alert, read it, check the email count in Mailpit, delete the account.
+
+The audit found and fixed: heading levels skipping (station page h2 → h4; alerts h1 → h3); the navbar link announced as "Alerts , 1 unread" in Chromium (sr-only span) — now a single `aria-label`.
+
 ## Frontend suite (Phase 4): 66 tests, all passing
 
 | File | Covers |
@@ -77,6 +94,10 @@ A mutation check was run: removing the "already alerted at this revision" check 
 | `SaveJourneyPanel.test.tsx` (3) | Signed-out users get a sign-in link back to this page; saves the route and preferences; explains a duplicate name |
 | `AccountPage.test.tsx` (2) | Alert settings: defaults, accessible hints, optimistic save with both fields, rollback with the server's message on error |
 | `SavedJourneysPage.test.tsx` (6) | Guard redirects to sign-in; list with re-plan link; delete needs confirmation; empty state; rename keeps the card's accessible name; optimistic monitoring toggle rolls back on error |
+
+## Manual verification performed (Phase 5, 2026-10-24)
+
+`npm run test:e2e:live` with the backend at a 15-second interval, live TfL, Mailpit: passed. The journey details page drew TfL's real Metropolitan line shape; the scheduler created a "Lift out of service" alert for Wembley Park within one cycle; one email arrived per alert; the same cycle resolved the Metropolitan event when TfL returned it to Good Service. Screenshots were checked by eye.
 
 ## Manual verification performed (Phase 4, 2026-10-24)
 
