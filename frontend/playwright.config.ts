@@ -6,6 +6,8 @@ import { defineConfig, devices } from '@playwright/test'
  * stack and only runs with E2E_LIVE=1 (backend on :8080, see docs/testing.md).
  */
 const live = process.env.E2E_LIVE === '1'
+/** Point the live suite at another server, e.g. the Docker image on :8080. Vite is then not started. */
+const baseURL = process.env.E2E_BASE_URL ?? 'http://localhost:5173'
 
 export default defineConfig({
   testDir: live ? './e2e/live' : './e2e',
@@ -16,16 +18,18 @@ export default defineConfig({
   reporter: process.env.CI ? [['github'], ['html', { open: 'never' }]] : 'list',
   timeout: live ? 120_000 : 30_000,
   use: {
-    baseURL: 'http://localhost:5173',
+    baseURL,
     trace: 'retain-on-failure',
   },
   projects: [
     { name: 'chromium', use: { ...devices['Desktop Chrome'] } },
     { name: 'mobile', use: { ...devices['Pixel 7'] } },
   ],
-  webServer: {
-    command: 'npm run dev -- --strictPort',
-    url: 'http://localhost:5173',
-    reuseExistingServer: !process.env.CI,
-  },
+  webServer: process.env.E2E_BASE_URL
+    ? undefined
+    : {
+        command: 'npm run dev -- --strictPort',
+        url: 'http://localhost:5173',
+        reuseExistingServer: !process.env.CI,
+      },
 })

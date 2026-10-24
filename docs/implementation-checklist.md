@@ -63,11 +63,11 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - [x] Verified end-to-end in a browser against live TfL (2026-10-24)
 
 ## Phase 6 — Production readiness
-- [ ] GitHub Actions (backend + frontend), dependency scanning
-- [ ] Dockerfiles
-- [ ] Hosting verified (free tiers, same-origin API, scheduler wake strategy)
-- [ ] Playwright E2E
-- [ ] README, screenshots, final docs
+- [x] GitHub Actions: backend (`mvnw verify` with Testcontainers), frontend (lint, types, tests, build), Playwright, Docker build; dependency review, weekly `npm audit`, Dependabot. All pass `actionlint`; **not yet run on GitHub** (the branch hasn't been pushed)
+- [x] Dockerfile: single multi-stage image (SPA + API, same origin), non-root, health check; verified locally with the live browser flow and no CSP violations
+- [~] Hosting: free tiers checked (Render + Neon, 2026-10-24), same-origin by construction, wake strategy built (token-protected trigger + GitHub Actions cron) and tested; prod profile tuned so a serverless DB can sleep (pool drains to 0 connections, verified). **Not deployed**: needs the owner's Render and Neon accounts (`docs/deployment.md`)
+- [x] Playwright E2E: 30 mocked-API tests (desktop + mobile) for CI, plus a live full-stack spec run against Vite and against the Docker image
+- [x] README, screenshots, final docs
 
 ## Known issues / notes
 - The lift-disruption endpoint is undocumented by TfL (see `feasibility.md` §1.7).
@@ -82,4 +82,6 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - Email delivery is at-least-once: a crash between SMTP accepting a message and the row being marked SENT re-sends it.
 - Monitoring only runs while the backend process is awake (risk R1, Phase 6).
 - The route map uses OpenStreetMap's public tiles, which suit low traffic only (OSM tile policy, checked 2026-10-24). Heavy use would need a tile provider. Tests never request real tiles.
+- `server.forward-headers-strategy` is set in the prod profile (resolves the Phase 3 note on the rate limiter behind a proxy).
+- Content-Security-Policy allows `'unsafe-inline'` styles because Leaflet positions tiles with inline styles; scripts are `'self'` only.
 - The main JS bundle is ~520 kB (160 kB gzipped); Leaflet is split out and loaded only on journey details.

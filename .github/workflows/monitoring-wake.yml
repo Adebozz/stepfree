@@ -1,0 +1,27 @@
+name: Monitoring wake-up
+
+# For hosts that sleep when idle (risk R1): a sleeping backend runs no scheduler, so this calls the
+# token-protected trigger every 15 minutes, which wakes the host and runs one cycle. Does nothing
+# until the APP_URL variable and MONITORING_TRIGGER_TOKEN secret are set in the repository.
+# GitHub may delay scheduled runs at busy times; see docs/deployment.md.
+
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+
+permissions: {}
+
+jobs:
+  trigger:
+    runs-on: ubuntu-latest
+    if: vars.APP_URL != ''
+    steps:
+      - name: Run one monitoring cycle
+        env:
+          APP_URL: ${{ vars.APP_URL }}
+          TOKEN: ${{ secrets.MONITORING_TRIGGER_TOKEN }}
+        run: |
+          # A cold start can take a minute; allow for it.
+          curl --fail-with-body --silent --show-error --max-time 180 --retry 2 --retry-delay 20 \
+            -X POST -H "X-Monitoring-Token: ${TOKEN}" "${APP_URL%/}/internal/monitoring/run"

@@ -32,7 +32,12 @@ public final class ApiClient {
         this.http = HttpClient.newBuilder().cookieHandler(cookies).build();
     }
 
-    public record Response(int status, HttpHeaders headers, JsonNode body) {
+    public record Response(int status, HttpHeaders headers, JsonNode body, String text) {
+
+        public Response(int status, HttpHeaders headers, JsonNode body) {
+            this(status, headers, body, null);
+        }
+
 
         public String header(String name) {
             return headers.firstValue(name).orElse(null);
@@ -45,6 +50,20 @@ public final class ApiClient {
 
     public Response get(String path) {
         return send("GET", path, null, true);
+    }
+
+    /** A GET that doesn't parse the body as JSON (HTML pages, static files). */
+    public Response getRaw(String path) {
+        try {
+            HttpResponse<String> response = http.send(HttpRequest.newBuilder(URI.create(baseUrl + path)).GET().build(),
+                    HttpResponse.BodyHandlers.ofString());
+            return new Response(response.statusCode(), response.headers(), null, response.body());
+        } catch (IOException e) {
+            throw new IllegalStateException(e);
+        } catch (InterruptedException e) {
+            Thread.currentThread().interrupt();
+            throw new IllegalStateException(e);
+        }
     }
 
     public Response post(String path, Object body) {

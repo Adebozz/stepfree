@@ -12,8 +12,13 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param initialDelay      delay after startup before the first cycle
  * @param resolvedRetention resolved events (and their alerts) older than this are deleted
  * @param runRetention      monitoring_run rows older than this are deleted
+ * @param triggerToken      shared secret for {@code POST /internal/monitoring/run}; blank disables the endpoint
  */
 @ConfigurationProperties("stepfree.monitoring")
 record MonitoringProperties(boolean enabled, Duration interval, Duration initialDelay,
-                            Duration resolvedRetention, Duration runRetention) {
+                            Duration resolvedRetention, Duration runRetention, String triggerToken) {
+
+    boolean triggerEnabled() {
+        return triggerToken != null && !triggerToken.isBlank();
+    }
 }

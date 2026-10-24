@@ -1,0 +1,11 @@
+.git
+.github
+.env
+.env.*
+docs
+**/node_modules
+**/dist
+backend/target
+frontend/playwright-report
+frontend/test-results
+frontend/e2e

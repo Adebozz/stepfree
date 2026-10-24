@@ -22,5 +22,26 @@ services:
       - "${MAIL_PORT:-1025}:1025"
       - "${MAILPIT_UI_PORT:-8025}:8025"
 
+  # The production image, for trying it locally: `docker compose --profile app up --build`.
+  app:
+    profiles: ["app"]
+    build: .
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/${POSTGRES_DB:-stepfree}
+      DB_USERNAME: ${DB_USERNAME:-stepfree}
+      DB_PASSWORD: ${DB_PASSWORD:-stepfree}
+      TFL_APP_KEY: ${TFL_APP_KEY:-}
+      MAIL_HOST: mailpit
+      MAIL_PORT: 1025
+      APP_BASE_URL: http://localhost:8080
+      # Plain HTTP locally; production must be HTTPS with secure cookies.
+      SESSION_COOKIE_SECURE: "false"
+      MONITORING_TRIGGER_TOKEN: ${MONITORING_TRIGGER_TOKEN:-}
+    ports:
+      - "8080:8080"
+
 volumes:
   postgres-data:

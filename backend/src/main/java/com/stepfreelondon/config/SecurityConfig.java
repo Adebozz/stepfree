@@ -16,6 +16,7 @@ import org.springframework.security.web.context.RequestAttributeSecurityContextR
 import org.springframework.security.web.context.SecurityContextRepository;
 import org.springframework.security.web.csrf.CookieCsrfTokenRepository;
 import org.springframework.security.web.csrf.CsrfTokenRepository;
+import org.springframework.security.web.header.writers.ReferrerPolicyHeaderWriter;
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
@@ -32,6 +33,14 @@ import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
 @EnableConfigurationProperties(CorsProperties.class)
 public class SecurityConfig {
 
+    /**
+     * Scripts only from our origin; map tiles from OpenStreetMap. Inline styles are allowed because
+     * Leaflet positions tiles with style attributes; inline scripts are not.
+     */
+    static final String CONTENT_SECURITY_POLICY = "default-src 'self'; script-src 'self'; style-src 'self' 'unsafe-inline'; "
+            + "img-src 'self' data: https://tile.openstreetmap.org; connect-src 'self'; font-src 'self'; "
+            + "object-src 'none'; base-uri 'self'; form-action 'self'; frame-ancestors 'none'";
+
     @Bean
     SecurityFilterChain securityFilterChain(HttpSecurity http, ProblemDetailSecurityHandler problemHandler,
                                             SecurityContextRepository securityContextRepository,
@@ -43,11 +52,18 @@ public class SecurityConfig {
                         // Logout is public so a client with an expired session can still clear its cookies.
                         .requestMatchers(HttpMethod.POST, "/api/v1/auth/register", "/api/v1/auth/login",
                                 "/api/v1/auth/logout").permitAll()
+                        // Token-checked in the controller; for an external scheduler waking a sleeping host (risk R1).
+                        .requestMatchers(HttpMethod.POST, "/internal/monitoring/run").permitAll()
                         .requestMatchers("/api/**").authenticated()
                         // Actuator exposes only health and info (see application.yml); OpenAPI docs are public.
                         .anyRequest().permitAll())
                 .securityContext(context -> context.securityContextRepository(securityContextRepository))
-                .csrf(csrf -> csrf.spa().csrfTokenRepository(csrfTokenRepository))
+                // The trigger sends no cookies, so there is no session to forge requests with: CSRF doesn't apply.
+                .csrf(csrf -> csrf.spa().csrfTokenRepository(csrfTokenRepository).ignoringRequestMatchers("/internal/monitoring/run"))
+                .headers(headers -> headers
+                        .contentSecurityPolicy(csp -> csp.policyDirectives(CONTENT_SECURITY_POLICY))
+                        // OSM's tile policy requires a Referer; this sends only our origin, never the path.
+                        .referrerPolicy(referrer -> referrer.policy(ReferrerPolicyHeaderWriter.ReferrerPolicy.STRICT_ORIGIN_WHEN_CROSS_ORIGIN)))
                 .cors(Customizer.withDefaults())
                 .httpBasic(AbstractHttpConfigurer::disable)
                 .formLogin(AbstractHttpConfigurer::disable)

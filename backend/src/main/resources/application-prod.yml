@@ -5,6 +5,25 @@ spring:
     url: ${DB_URL}
     username: ${DB_USERNAME}
     password: ${DB_PASSWORD}
+    # Serverless Postgres (e.g. Neon) suspends after a few idle minutes and bills while awake: hold no
+    # idle connections, so a quiet app lets the database sleep.
+    hikari:
+      minimum-idle: 0
+      idle-timeout: 60000   # milliseconds (Hikari takes a plain number)
+      maximum-pool-size: 5
+  session:
+    jdbc:
+      # Default is every minute, which would keep a serverless database awake permanently.
+      cleanup-cron: "0 0 * * * *"
+
+server:
+  # Behind the host's proxy: take the client IP (login rate limit) and scheme from X-Forwarded-* headers.
+  # Tomcat's valve only trusts them from private-network proxies, so a client can't spoof its IP.
+  forward-headers-strategy: native
+  servlet:
+    session:
+      cookie:
+        secure: ${SESSION_COOKIE_SECURE:true}
 
 springdoc:
   swagger-ui:

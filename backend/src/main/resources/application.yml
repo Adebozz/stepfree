@@ -100,6 +100,8 @@ stepfree:
     initial-delay: 30s
     resolved-retention: 90d
     run-retention: 30d
+    # Enables POST /internal/monitoring/run for an external scheduler. Use a long random value.
+    trigger-token: ${MONITORING_TRIGGER_TOKEN:}
   notifications:
     from-address: ${MAIL_FROM:alerts@stepfree.local}
     app-base-url: ${APP_BASE_URL:http://localhost:5173}

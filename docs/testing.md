@@ -12,7 +12,11 @@ npm test           # Vitest + Testing Library (jsdom)
 
 The suite makes **no live TfL calls**. TfL fixtures in `backend/src/test/resources/tfl/` are real responses captured from the live API on 2026-10-23, so mapping tests run against TfL's actual JSON shape.
 
-## Backend suite (Phase 4): 164 tests, all passing
+## Backend suite (Phase 6): 172 tests, all passing
+
+Added in Phase 6: `SpaAndSecurityHeadersTest` (5: client routes get the app shell; `/api`, `/actuator` and missing files never do; CSP/Referrer/nosniff/frame headers; trigger is 404 without a token), `MonitoringTriggerTest` (2: right token runs a cycle without session or CSRF; missing/wrong tokens get 401 and run nothing), `ProdProfileTest` (1: the app boots with `application-prod.yml`; it caught a real startup failure, a Hikari `idle-timeout` given as `60s`).
+
+## Backend suite (Phase 4): 164 tests
 
 | Test class | Type | Covers |
 |---|---|---|
@@ -94,6 +98,16 @@ The audit found and fixed: heading levels skipping (station page h2 → h4; aler
 | `SaveJourneyPanel.test.tsx` (3) | Signed-out users get a sign-in link back to this page; saves the route and preferences; explains a duplicate name |
 | `AccountPage.test.tsx` (2) | Alert settings: defaults, accessible hints, optimistic save with both fields, rollback with the server's message on error |
 | `SavedJourneysPage.test.tsx` (6) | Guard redirects to sign-in; list with re-plan link; delete needs confirmation; empty state; rename keeps the card's accessible name; optimistic monitoring toggle rolls back on error |
+
+## Manual verification performed (Phase 6, 2026-10-24)
+
+Production image (`docker compose --profile app up --build`), prod profile, live TfL, Mailpit:
+- Healthy, running as user `stepfree`, JSON logs; `/saved` serves the app shell; Swagger UI 404; CSP and Referrer-Policy present.
+- `POST /internal/monitoring/run`: 401 without a token, `SUCCEEDED` with it.
+- `E2E_BASE_URL=http://localhost:8080 E2E_TRIGGER_TOKEN=… npm run test:e2e:live`: passed with no console errors (so no CSP violations).
+- The first image build failed to start (Hikari rejected `idle-timeout: 60s`). Fixed, and `ProdProfileTest` added so CI catches it.
+- After activity, the connection pool drained from 3 to 0 connections within ~105 s, so a serverless database can suspend.
+- Workflows validated with `actionlint` 1.7.7.
 
 ## Manual verification performed (Phase 5, 2026-10-24)
 

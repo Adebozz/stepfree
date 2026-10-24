@@ -108,6 +108,10 @@ Users control monitoring per journey (saved-journey switch) and globally, plus e
 - **Alerts**: `/alerts` (notification centre) and `/dashboard` poll every 60 s while open; the navbar shows the unread count. `MonitoringNote` says when journeys were last checked, so an empty list can't be mistaken for "all clear" if checks stopped.
 - User-scoped caches (`saved-journeys`, `notifications`) are dropped on sign-in and sign-out.
 
+## Deployment (Phase 6)
+
+One image serves the SPA and the API from the same origin (see [deployment.md](deployment.md)). `SpaWebConfig` falls back to `index.html` for extension-less paths outside `/api`, `/actuator`, `/v3`, `/swagger-ui` and `/internal`, so unknown API paths stay errors. Security headers: CSP (`script-src 'self'`, tiles from OSM only), `Referrer-Policy: strict-origin-when-cross-origin` (OSM needs a Referer; only the origin is sent), `X-Frame-Options: DENY`, `nosniff`. `POST /internal/monitoring/run` (token, constant-time compare, no session/CSRF) lets an external cron wake a sleeping host.
+
 ## Cross-cutting decisions
 
 | Concern | Decision |

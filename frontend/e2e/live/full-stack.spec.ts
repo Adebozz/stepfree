@@ -3,13 +3,21 @@ import { expect, test } from '@playwright/test'
 /**
  * The real stack: Vite → Spring Boot → PostgreSQL, live TfL, Mailpit for email. Run with
  * `npm run test:e2e:live` after `docker compose up -d` and starting the backend with
- * MONITORING_INTERVAL=15s (so an alert appears within the test). Not run in CI: it depends on
- * TfL's live data, which the mocked suite deliberately doesn't.
+ * MONITORING_INTERVAL=15s (so an alert appears within the test), or set E2E_TRIGGER_TOKEN to the
+ * server's MONITORING_TRIGGER_TOKEN to run a cycle on demand. E2E_BASE_URL targets another server
+ * (e.g. the Docker image). Not run in CI: it depends on TfL's live data.
  */
 test('register, plan, map, save, get alerted, read the alert, delete the account', async ({ page, isMobile }) => {
   test.skip(isMobile, 'one live run is enough')
   // OSM tile policy: no automated tile traffic.
   await page.route('https://tile.openstreetmap.org/**', (route) => route.fulfill({ status: 204 }))
+  // Any console error fails the run, including Content-Security-Policy violations in the production image.
+  const consoleErrors: string[] = []
+  page.on('console', (message) => {
+    // Signed-out /auth/me answers 401 by design (see the checklist's known issues).
+    if (message.type() === 'error' && !message.text().includes('401')) consoleErrors.push(message.text())
+  })
+  page.on('pageerror', (error) => consoleErrors.push(error.message))
   const email = `live-e2e-${Date.now()}@example.com`
   const password = 'correct horse battery'
 
@@ -45,6 +53,11 @@ test('register, plan, map, save, get alerted, read the alert, delete the account
   await expect(page.getByText('Saved as “Live commute”.')).toBeVisible()
 
   // The scheduler runs every 15 s in this setup; the alerts page refreshes every minute, so reload.
+  const triggerToken = process.env.E2E_TRIGGER_TOKEN
+  if (triggerToken) {
+    const run = await page.request.post('/internal/monitoring/run', { headers: { 'X-Monitoring-Token': triggerToken } })
+    expect(run.status()).toBe(200)
+  }
   await page.goto('/alerts')
   await expect(async () => {
     await page.reload()
@@ -70,4 +83,5 @@ test('register, plan, map, save, get alerted, read the alert, delete the account
   await page.getByRole('checkbox', { name: /I understand/ }).check()
   await page.getByRole('button', { name: 'Delete my account' }).click()
   await expect(page.getByRole('link', { name: 'Sign in' })).toBeVisible()
+  expect(consoleErrors).toEqual([])
 })
