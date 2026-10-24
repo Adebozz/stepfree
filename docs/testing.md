@@ -12,7 +12,7 @@ npm test           # Vitest + Testing Library (jsdom)
 
 The suite makes **no live TfL calls**. TfL fixtures in `backend/src/test/resources/tfl/` are real responses captured from the live API on 2026-10-23, so mapping tests run against TfL's actual JSON shape.
 
-## Backend suite (Phase 3): 127 tests, all passing
+## Backend suite (Phase 4): 164 tests, all passing
 
 | Test class | Type | Covers |
 |---|---|---|
@@ -46,7 +46,20 @@ Added in Phase 3:
 
 `ApiClient` (test helper) uses the JDK `HttpClient` with a `CookieManager` and echoes `XSRF-TOKEN` exactly as the SPA does, so these tests exercise the real session and CSRF machinery instead of MockMvc's `csrf()` shortcut.
 
-## Frontend suite (Phase 3): 64 tests, all passing
+Added in Phase 4:
+
+| Test class | Type | Covers |
+|---|---|---|
+| `DisruptionNormaliserTest` (9) | Unit, real fixtures (incl. the full mode-wide station feed captured 2026-10-24) | Only disrupted lines become events; severity change keeps identity, changes hash; whitespace isn't a change; one event per notice across 18 stations; line inferred from "CIRCLE LINE:" heading; identity independent of feed order; lifts one event per station |
+| `ChangeDetectorTest` (7) | Unit | Created / updated / unchanged / resolved; a feed that wasn't read never resolves; same key in two sources; duplicate keys; scope change without a revision |
+| `JourneyMatcherTest` (5) | Unit | Lines ridden only; station notice needs a ridden line if it names lines; lifts only where the passenger leaves the train; lift + identical station notice → one alert |
+| `DisruptionFeedTest` (3) | Unit | Stale, unavailable and failing feeds reported as not read; hub ids expanded, with fallback when TfL fails |
+| `AlertEmailTest` (2) | Unit | Email content and links; CR/LF in TfL text can't inject headers; subject length |
+| `MonitoringIntegrationTest` (11) | Testcontainers + real HTTP | NEW → UPDATED → RESOLVED, each once however many cycles run; partial and total feed failure; paused journeys and opted-out users get nothing; **4 concurrent cycles produce one alert**; outbox retry with backoff, not retried early, cancelled when email turned off; alerts are per user (404 on another user's alert); preferences validation; monitoring status; account deletion cascades |
+
+A mutation check was run: removing the "already alerted at this revision" check makes two integration tests fail.
+
+## Frontend suite (Phase 4): 66 tests, all passing
 
 | File | Covers |
 |---|---|
@@ -62,7 +75,16 @@ Added in Phase 3:
 | `route.test.ts` (6) | Route roles (origin, intermediate, interchange, destination), hub ids kept, invalid ids dropped, walking-only journeys, name suggestion, re-plan needs ICS codes |
 | `SignInPage.test.tsx` (4) | Signs in and returns to `next`; shows the server's message; ignores an off-site `next`; validates before calling the server |
 | `SaveJourneyPanel.test.tsx` (3) | Signed-out users get a sign-in link back to this page; saves the route and preferences; explains a duplicate name |
+| `AccountPage.test.tsx` (2) | Alert settings: defaults, accessible hints, optimistic save with both fields, rollback with the server's message on error |
 | `SavedJourneysPage.test.tsx` (6) | Guard redirects to sign-in; list with re-plan link; delete needs confirmation; empty state; rename keeps the card's accessible name; optimistic monitoring toggle rolls back on error |
+
+## Manual verification performed (Phase 4, 2026-10-24)
+
+Backend with a 20-second interval, Docker Postgres + Mailpit, live TfL:
+- Registered, turned email on, planned Wembley Park → King's Cross (step-free) through the API and saved the Metropolitan line route.
+- First cycle: 86 events created (7 lines, 63 station notices, 16 lift stations), status SUCCEEDED, **2 alerts**: "Metropolitan: Minor Delays" and the Wembley Park lift outage. TfL's identical station-notice copy of the lift notice was not alerted twice.
+- Both emails arrived in Mailpit with the journey name, TfL's text and links back to the app.
+- Next cycle: 0 created, 0 alerts. Account deletion removed the alerts and deliveries.
 
 ## Manual verification performed (Phase 3, 2026-10-24)
 

@@ -1,0 +1,5 @@
+# Overrides for tests (classpath:/config/ takes precedence over classpath:/application.yml).
+# Tests run monitoring cycles explicitly; a background scheduler would race them.
+stepfree:
+  monitoring:
+    enabled: false

@@ -129,7 +129,7 @@ function SavedJourneyCard({ journey, lineName }: { journey: SavedJourney; lineNa
             Watch this journey for disruptions
           </label>
           <p id={`${headingId}-monitor-hint`} className="text-slate-600">
-            Disruption alerts are coming in a later update; your choice is saved now.
+            We check TfL every few minutes and alert you when a disruption affects this route's lines or stations.
           </p>
         </div>
       </div>

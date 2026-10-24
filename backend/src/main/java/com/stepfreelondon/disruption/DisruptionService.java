@@ -37,8 +37,7 @@ public class DisruptionService {
      * best-effort. The envelope reports the older of the two retrieval times and is stale if either is.
      */
     public LiveData<DisruptionsOverviewDto> overview() {
-        LiveData<List<StationDisruptionDto>> stations =
-                stationCache.get(ALL, key -> mapper.toStationDisruptions(tflClient.stopPointDisruptionsByModes(MODES)));
+        LiveData<List<StationDisruptionDto>> stations = stationDisruptions();
         Optional<LiveData<List<LiftOutageDto>>> lifts = liftOutageService.currentOutages();
 
         var overview = new DisruptionsOverviewDto(
@@ -50,5 +49,10 @@ public class DisruptionService {
                 .orElse(stations.retrievedAt());
         boolean stale = stations.stale() || lifts.map(LiveData::stale).orElse(false);
         return new LiveData<>(overview, retrievedAt, stale);
+    }
+
+    /** Every station disruption on the rail modes. Shared cache with {@link #overview()}; failures propagate. */
+    public LiveData<List<StationDisruptionDto>> stationDisruptions() {
+        return stationCache.get(ALL, key -> mapper.toStationDisruptions(tflClient.stopPointDisruptionsByModes(MODES)));
     }
 }

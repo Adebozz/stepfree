@@ -19,6 +19,18 @@ spring:
     jdbc:
       initialize-schema: never   # V1 migration creates the Spring Session tables.
     timeout: 7d
+  mail:
+    # Mailpit (docker-compose) locally: catches every message, UI on http://localhost:8025.
+    host: ${MAIL_HOST:localhost}
+    port: ${MAIL_PORT:1025}
+    username: ${MAIL_USERNAME:}
+    password: ${MAIL_PASSWORD:}
+    properties:
+      mail.smtp.auth: ${MAIL_SMTP_AUTH:false}
+      mail.smtp.starttls.enable: ${MAIL_STARTTLS:false}
+      mail.smtp.connectiontimeout: 5000
+      mail.smtp.timeout: 10000
+      mail.smtp.writetimeout: 10000
 
 server:
   servlet:
@@ -42,6 +54,10 @@ management:
       probes:
         enabled: true
       show-details: never
+  health:
+    # An unreachable SMTP server must not mark the whole app DOWN; failed emails are retried.
+    mail:
+      enabled: false
 
 springdoc:
   swagger-ui:
@@ -78,3 +94,15 @@ stepfree:
     failure-window: 15m
   saved-journeys:
     max-per-user: 50
+  monitoring:
+    enabled: ${MONITORING_ENABLED:true}
+    interval: ${MONITORING_INTERVAL:2m}
+    initial-delay: 30s
+    resolved-retention: 90d
+    run-retention: 30d
+  notifications:
+    from-address: ${MAIL_FROM:alerts@stepfree.local}
+    app-base-url: ${APP_BASE_URL:http://localhost:5173}
+    retry-backoff: 1m,5m,30m
+    batch-size: 50
+    stuck-after: 10m

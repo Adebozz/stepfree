@@ -8,7 +8,7 @@ PostgreSQL 17, schema managed only by Flyway migrations in `backend/src/main/res
 |---|---|---|
 | `V1__users_and_sessions` | `app_user`, `spring_session`, `spring_session_attributes` | 3 ✅ |
 | `V2__saved_journeys` | `station`, `saved_journey`, `saved_journey_line`, `saved_journey_station` | 3 ✅ |
-| planned `V3` | disruption, monitoring, alerts, notifications | 4 |
+| `V3__monitoring_and_notifications` | `disruption_event` (+ `_line`, `_station`), `monitoring_run`, `journey_alert`, `notification_preference`, `notification_delivery` | 4 ✅ |
 
 ## Proposed schema (refined from the original requirements)
 
@@ -23,6 +23,7 @@ Changes from the original proposal, and why:
 - `disruption_event` uses **`identity_key` + `content_hash`** instead of a single fingerprint, because TfL supplies no ids (§1.8). The key says *which* disruption it is; the hash says whether its content changed.
 - **`monitoring_run`** added to record the outcome of each scheduler cycle ("record monitoring outcomes").
 - `notification_preference` keyed by `user_id` (strictly one row per user).
+- Phase 4 additions to the proposal: `disruption_event.title`; `journey_alert.title`/`message` copied at alert time (an alert keeps saying what the user was told even after TfL edits the text); `journey_alert.disruption_event_id` is `ON DELETE CASCADE` so retention can delete old events; `notification_delivery.next_attempt_at` for retry backoff and a `CANCELLED` status for emails whose owner turned email off before sending; a `CHECK` that `resolved_at` is set exactly when the status is RESOLVED.
 - Dedup constraints: `journey_alert` unique on `(saved_journey_id, disruption_event_id, alert_type, event_revision)`; `notification_delivery` unique on `(journey_alert_id, channel)`.
 
 ```
@@ -69,4 +70,4 @@ Indexes planned for: `saved_journey(user_id)`, `saved_journey_line(line_id)`, `s
 
 ## Deletion and retention
 
-Deleting an account (password required) hard-deletes the `app_user` row. `ON DELETE CASCADE` removes saved journeys and their routes (and, from Phase 4, alerts, deliveries and preferences). The user's sessions are deleted through Spring Session's principal-name index; that step is in the application because `spring_session.principal_name` can't be a foreign key. Verified by `AuthIntegrationTest` and `SavedJourneyIntegrationTest`. Disruption events contain no personal data and are kept. Resolved events older than 90 days are eligible for cleanup (Phase 4).
+Deleting an account (password required) hard-deletes the `app_user` row. `ON DELETE CASCADE` removes saved journeys and their routes (and, from Phase 4, alerts, deliveries and preferences). The user's sessions are deleted through Spring Session's principal-name index; that step is in the application because `spring_session.principal_name` can't be a foreign key. Verified by `AuthIntegrationTest` and `SavedJourneyIntegrationTest`. Disruption events contain no personal data and are kept. Each monitoring cycle deletes resolved events older than 90 days (with their alerts) and `monitoring_run` rows older than 30 days.

@@ -11,6 +11,7 @@ All TfL access goes through `com.stepfreelondon.tfl.TflClient`. No other class s
 | `GET /api/v1/journeys` | `GET /Journey/JourneyResults/{fromIcs}/to/{toIcs}` | 60 s | 2 |
 | `GET /api/v1/stations/{id}/accessibility` | `GET /StopPoint/{id}` + `GET /Disruptions/Lifts/v2/` (undocumented) | 12 h / 120 s | 2 |
 | `GET /api/v1/disruptions` | `GET /Line/Mode/{modes}/Disruption`, `GET /StopPoint/Mode/{modes}/Disruption` | 60 s | 2 |
+| Monitoring cycle (no endpoint) | line status, `/StopPoint/Mode/{modes}/Disruption`, lifts, and `/StopPoint/{hub}` to expand hubs | shared with the above | 4 |
 
 ## Client behaviour
 

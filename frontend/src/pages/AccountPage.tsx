@@ -4,7 +4,9 @@ import { useNavigate } from 'react-router'
 import { z } from 'zod'
 
 import { useChangePassword, useCurrentUser, useDeleteAccount, useUpdateProfile } from '../api/account'
-import type { User } from '../api/types'
+import { useNotificationPreferences, useUpdateNotificationPreferences } from '../api/notifications'
+import type { NotificationPreferences, User } from '../api/types'
+import { ErrorState } from '../components/ErrorState'
 import { FormError } from '../components/FormError'
 import { TextField } from '../components/TextField'
 import { newPasswordSchema } from '../features/account/schemas'
@@ -22,8 +24,73 @@ export function AccountPage() {
     <div className="mx-auto max-w-2xl space-y-6">
       <h1 className="text-2xl font-bold text-navy-900">Your account</h1>
       <ProfileForm user={user} />
+      <NotificationSettings email={user.email} />
       <PasswordForm />
       <DeleteAccount />
+    </div>
+  )
+}
+
+function NotificationSettings({ email }: { email: string }) {
+  const preferences = useNotificationPreferences()
+  const update = useUpdateNotificationPreferences()
+  const change = (changes: Partial<NotificationPreferences>) => {
+    if (preferences.data) update.mutate({ ...preferences.data, ...changes })
+  }
+
+  return (
+    <section aria-labelledby="alerts-heading" className={card}>
+      <h2 id="alerts-heading" className="text-lg font-semibold text-navy-900">
+        Disruption alerts
+      </h2>
+      {preferences.isPending ? (
+        <p className="mt-3 text-sm text-slate-600">Loading your alert settings…</p>
+      ) : preferences.isError ? (
+        <div className="mt-3">
+          <ErrorState error={preferences.error} title="Couldn't load your alert settings" onRetry={() => void preferences.refetch()} />
+        </div>
+      ) : (
+        <div className="mt-3 space-y-4 text-sm">
+          <FormError error={update.error} />
+          <PreferenceCheckbox
+            id="pref-monitoring"
+            label="Check my saved journeys for disruptions"
+            hint="Turn this off to pause alerts for every saved journey. Each journey also has its own switch."
+            checked={preferences.data.monitoringEnabled}
+            onChange={(monitoringEnabled) => change({ monitoringEnabled })}
+          />
+          <PreferenceCheckbox
+            id="pref-email"
+            label="Email me when an alert is created"
+            hint={`Sent to ${email}. Alerts always appear on your Alerts page.`}
+            checked={preferences.data.emailEnabled}
+            onChange={(emailEnabled) => change({ emailEnabled })}
+          />
+        </div>
+      )}
+    </section>
+  )
+}
+
+function PreferenceCheckbox(props: { id: string; label: string; hint: string; checked: boolean; onChange: (checked: boolean) => void }) {
+  return (
+    <div className="flex items-start gap-2">
+      <input
+        id={props.id}
+        type="checkbox"
+        className="mt-0.5 size-4"
+        aria-describedby={`${props.id}-hint`}
+        checked={props.checked}
+        onChange={(event) => props.onChange(event.target.checked)}
+      />
+      <div>
+        <label htmlFor={props.id} className="text-navy-900">
+          {props.label}
+        </label>
+        <p id={`${props.id}-hint`} className="text-slate-600">
+          {props.hint}
+        </p>
+      </div>
     </div>
   )
 }

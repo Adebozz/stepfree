@@ -2,11 +2,11 @@
 
 Accessible journey planning and disruption monitoring for London, built on the official TfL Unified API.
 
-> **Status: Phase 3 of 6 complete.** Step-free journey planning, station accessibility (including lift outages), live line status and disruptions, plus accounts and saved journeys, work end to end. Disruption alerts for saved journeys are next; see [`docs/implementation-checklist.md`](docs/implementation-checklist.md).
+> **Status: Phase 4 of 6 complete.** Step-free journey planning, station accessibility (including lift outages), live line status and disruptions, accounts, saved journeys, and disruption monitoring with in-app and email alerts work end to end. See [`docs/implementation-checklist.md`](docs/implementation-checklist.md).
 
 ## The problem
 
-Lift outages, station closures and line disruptions can make a London journey impossible for wheelchair users and people with reduced mobility, and the information is spread across several places. StepFree London plans journeys with TfL's own step-free preferences, shows what is actually known about station accessibility, and (in later phases) watches saved journeys for disruptions.
+Lift outages, station closures and line disruptions can make a London journey impossible for wheelchair users and people with reduced mobility, and the information is spread across several places. StepFree London plans journeys with TfL's own step-free preferences, shows what is actually known about station accessibility, and watches saved journeys for disruptions that affect the route the user chose.
 
 The app never claims a journey is accessible beyond what TfL's data supports. Missing data is shown as *unavailable*, never as "fine".
 
@@ -20,7 +20,7 @@ Prerequisites: Java 21, Docker. Maven is not needed; the wrapper downloads it.
 
 ```bash
 cp .env.example .env          # optional; defaults work for local dev
-docker compose up -d          # PostgreSQL on localhost:5432
+docker compose up -d          # PostgreSQL on :5432, Mailpit (catches alert emails) on :1025, UI http://localhost:8025
 cd backend
 ./mvnw spring-boot:run        # http://localhost:8080
 ```

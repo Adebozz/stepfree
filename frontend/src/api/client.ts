@@ -45,7 +45,7 @@ export async function apiGet<T>(path: string, params?: URLSearchParams, signal?:
   return (await response.json()) as T
 }
 
-type Method = 'POST' | 'PATCH' | 'DELETE'
+type Method = 'POST' | 'PUT' | 'PATCH' | 'DELETE'
 
 const CSRF_COOKIE = 'XSRF-TOKEN'
 const CSRF_HEADER = 'X-XSRF-TOKEN'

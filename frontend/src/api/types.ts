@@ -239,3 +239,35 @@ export interface CreateSavedJourney {
   preference?: JourneyPreference
   route: SavedRoute
 }
+
+// ---- Alerts and notifications ----
+
+export type AlertType = 'NEW' | 'UPDATED' | 'RESOLVED'
+
+export interface JourneyAlert {
+  id: string
+  journeyId: string
+  journeyName: string
+  type: AlertType
+  title: string
+  /** TfL's text at the time of the alert. */
+  message: string
+  createdAt: string
+  read: boolean
+}
+
+export interface AlertList {
+  alerts: JourneyAlert[]
+  unreadCount: number
+}
+
+export interface NotificationPreferences {
+  emailEnabled: boolean
+  monitoringEnabled: boolean
+}
+
+export interface MonitoringStatus {
+  schedulerEnabled: boolean
+  lastCheckedAt: string | null
+  lastStatus: 'SUCCEEDED' | 'PARTIAL' | 'FAILED' | null
+}

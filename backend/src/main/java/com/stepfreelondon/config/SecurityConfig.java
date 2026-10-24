@@ -83,7 +83,7 @@ public class SecurityConfig {
         if (!properties.allowedOrigins().isEmpty()) {
             CorsConfiguration config = new CorsConfiguration();
             config.setAllowedOrigins(properties.allowedOrigins());
-            config.setAllowedMethods(List.of("GET", "POST", "PATCH", "DELETE"));
+            config.setAllowedMethods(List.of("GET", "POST", "PUT", "PATCH", "DELETE"));
             config.setAllowedHeaders(List.of("Content-Type", "X-XSRF-TOKEN", "X-Correlation-Id"));
             config.setExposedHeaders(List.of("X-Correlation-Id", "Retry-After"));
             config.setAllowCredentials(true);

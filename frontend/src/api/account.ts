@@ -8,7 +8,7 @@ export const accountKeys = {
 }
 
 /** Everything cached for the signed-in user. Dropped on sign-out so the next user never sees it. */
-const USER_SCOPED_KEYS = [['saved-journeys']]
+const USER_SCOPED_KEYS = [['saved-journeys'], ['notifications']]
 
 /** The signed-in user, or null when signed out. A 401 is an answer here, not an error. */
 export function useCurrentUser() {

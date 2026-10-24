@@ -49,7 +49,7 @@ describe('SavedJourneysPage', () => {
     expect(within(card).getByText("Wembley Park to King's Cross & St Pancras International")).toBeInTheDocument()
     expect(within(card).getByText('Metropolitan')).toBeInTheDocument()
     expect(within(card).getByRole('checkbox', { name: 'Watch this journey for disruptions' })).toHaveAccessibleDescription(
-      'Disruption alerts are coming in a later update; your choice is saved now.',
+      "We check TfL every few minutes and alert you when a disruption affects this route's lines or stations.",
     )
     const plan = within(card).getByRole('link', { name: 'Plan this journey' })
     expect(plan.getAttribute('href')).toContain('from=1000257')

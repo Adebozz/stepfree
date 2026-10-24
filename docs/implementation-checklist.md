@@ -47,12 +47,13 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - [x] Verified end-to-end in a browser against live TfL (2026-10-24)
 
 ## Phase 4 — Monitoring and notifications
-- [ ] Disruption normalisation + identity/content hashing
-- [ ] Scheduler with overlap guard, `monitoring_run` records
-- [ ] Journey matching (lines + stations of chosen route)
-- [ ] Alerts with DB-level dedup
-- [ ] Email via Mailpit locally; delivery records + retries
-- [ ] Notification preferences
+- [x] Disruption normalisation + identity/content hashing (line status, station notices grouped across stations, lifts)
+- [x] Scheduler with overlap guard (in-process flag + Postgres advisory lock), `monitoring_run` records
+- [x] Journey matching (lines + stations of chosen route, station roles for lifts, hub expansion)
+- [x] Alerts with DB-level dedup (`journey_alert_dedup` unique constraint, `ON CONFLICT DO NOTHING`)
+- [x] Email via Mailpit locally; outbox delivery records + retries with backoff
+- [x] Notification preferences (API + Account page)
+- [x] Verified live against TfL with Mailpit (2026-10-24)
 
 ## Phase 5 — UI refinement and mapping
 - [ ] Leaflet map using TfL `lineString` geometry only
@@ -74,3 +75,7 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - Behind a reverse proxy, the rate limiter sees the proxy's IP until forwarded headers are configured (`server.forward-headers-strategy`, Phase 6).
 - Registration reveals whether an email is already registered (409). Unavoidable without email verification; login never reveals it.
 - `GET /api/v1/auth/me` answers 401 when signed out, which browsers log in the console. Correct behaviour, not an error.
+- Line-status alerts are per line: TfL's status gives the affected section only as free text ("between Harrow-on-the-Hill and Uxbridge"), so a journey on an unaffected part of the line is still alerted. The alert shows TfL's text so the user can judge.
+- A heading-less station notice whose text TfL edits is seen as resolved + new (there is nothing else stable to key it on).
+- Email delivery is at-least-once: a crash between SMTP accepting a message and the row being marked SENT re-sends it.
+- Monitoring only runs while the backend process is awake (risk R1, Phase 6).

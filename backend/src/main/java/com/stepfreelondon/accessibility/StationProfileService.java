@@ -54,6 +54,15 @@ public class StationProfileService {
     }
 
     /**
+     * The id itself plus, for a hub (e.g. {@code HUBWMB}), the NaPTAN ids of its member stations.
+     * Cached for as long as station information; failures propagate.
+     */
+    public Set<String> memberIds(String stationId) {
+        StationProfile station = profile(stationId).data();
+        return Set.copyOf(Stream.concat(Stream.of(stationId), station.memberIds().stream()).toList());
+    }
+
+    /**
      * Combines static station data (required) with live disruptions and lift outages (each optional).
      * If a live source fails, its "available" flag is false: the UI must not read an empty list as
      * "no problems".

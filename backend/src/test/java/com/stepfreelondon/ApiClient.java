@@ -55,6 +55,10 @@ public final class ApiClient {
         return send("PATCH", path, body, true);
     }
 
+    public Response put(String path, Object body) {
+        return send("PUT", path, body, true);
+    }
+
     public Response delete(String path, Object body) {
         return send("DELETE", path, body, true);
     }
