@@ -2,7 +2,7 @@
 # session cookie stays first-party (risk R2). Tests run in CI, not here.
 
 # --- 1. Frontend build ---
-FROM node:22-alpine AS frontend
+FROM node:25-alpine AS frontend
 WORKDIR /app/frontend
 COPY frontend/package.json frontend/package-lock.json ./
 RUN npm ci --no-audit --no-fund
