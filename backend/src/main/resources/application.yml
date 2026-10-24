@@ -33,6 +33,8 @@ spring:
       mail.smtp.writetimeout: 10000
 
 server:
+  # Hosts such as Render tell the app which port to use through PORT.
+  port: ${PORT:8080}
   servlet:
     session:
       cookie:

@@ -30,8 +30,10 @@ COPY --from=backend /app/backend/target/extracted/spring-boot-loader/ ./
 COPY --from=backend /app/backend/target/extracted/snapshot-dependencies/ ./
 COPY --from=backend /app/backend/target/extracted/application/ ./
 USER stepfree
+# Tuned for small instances (e.g. Render free: 512 MB, 0.1 CPU). Measured with docker --cpus=0.1 --memory=512m:
+# SerialGC + C1-only compilation cut startup from 374 s to 166 s and memory from ~290 MB to ~265 MB.
 ENV SPRING_PROFILES_ACTIVE=prod \
-    JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError"
+    JAVA_TOOL_OPTIONS="-XX:MaxRAMPercentage=75 -XX:+ExitOnOutOfMemoryError -XX:+UseSerialGC -XX:TieredStopAtLevel=1 -Xss512k"
 EXPOSE 8080
 HEALTHCHECK --interval=30s --timeout=5s --start-period=60s --retries=3 \
     CMD wget -qO- http://localhost:8080/actuator/health/liveness || exit 1

@@ -41,6 +41,17 @@ Try it locally: `docker compose --profile app up --build`, then http://localhost
 
 Render's own free Postgres expires after 30 days, so it isn't used.
 
+**Will it fit Render's free instance (512 MB RAM, 0.1 CPU)?** Simulated locally with `docker run --memory=512m --cpus=0.1`:
+
+| | Result |
+|---|---|
+| Memory | ~265 MB, no out-of-memory kill |
+| Cold start | ~175 s (was 374 s before the JVM flags in the Dockerfile: SerialGC, C1-only compilation) |
+| First live line status | ~9 s, hence the 15 s TfL read timeout in the prod profile |
+| Monitoring cycle via trigger | ~5 s |
+
+Docker's CPU limit is strict, so real Render may be faster. The app binds to Render's `PORT` (`server.port: ${PORT:8080}`).
+
 **Monitoring on a sleeping host (risk R1).** A spun-down service runs no scheduler. `.github/workflows/monitoring-wake.yml` calls the trigger every 15 minutes, which wakes the service and runs one cycle. Set `MONITORING_ENABLED=false` on the host so the in-process 2-minute scheduler doesn't keep the database awake. Budget, as estimated:
 - Render: awake at most ~744 h/month, within 750 h.
 - Neon: each cycle wakes the database for about 5–6 minutes out of every 15. That is roughly 290 h/month, or ~73 CU-hours at 0.25 CU. **UNVERIFIED:** Neon's page didn't state the free plan's minimum compute size. Watch the usage page after the first week.

@@ -22,6 +22,6 @@ jobs:
           APP_URL: ${{ vars.APP_URL }}
           TOKEN: ${{ secrets.MONITORING_TRIGGER_TOKEN }}
         run: |
-          # A cold start can take a minute; allow for it.
-          curl --fail-with-body --silent --show-error --max-time 180 --retry 2 --retry-delay 20 \
+          # A cold start on Render's free instance took ~3 minutes in a 0.1-CPU simulation; allow for it.
+          curl --fail-with-body --silent --show-error --max-time 300 --retry 2 --retry-delay 30 \
             -X POST -H "X-Monitoring-Token: ${TOKEN}" "${APP_URL%/}/internal/monitoring/run"

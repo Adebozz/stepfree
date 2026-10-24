@@ -25,6 +25,11 @@ server:
       cookie:
         secure: ${SESSION_COOKIE_SECURE:true}
 
+stepfree:
+  tfl:
+    # On a tiny CPU, parsing TfL's first large response on a cold JVM took ~8 s, right at the dev limit.
+    read-timeout: 15s
+
 springdoc:
   swagger-ui:
     enabled: false
