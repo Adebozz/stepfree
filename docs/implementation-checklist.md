@@ -63,7 +63,7 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - [x] Verified end-to-end in a browser against live TfL (2026-10-24)
 
 ## Phase 6 — Production readiness
-- [x] GitHub Actions: backend (`mvnw verify` with Testcontainers), frontend (lint, types, tests, build), Playwright, Docker build; dependency review, weekly `npm audit`, Dependabot. All pass `actionlint`; **not yet run on GitHub** (the branch hasn't been pushed)
+- [x] GitHub Actions: backend (`mvnw verify` with Testcontainers), frontend (lint, types, tests, build), Playwright, Docker build; dependency review, weekly `npm audit`, Dependabot. All pass `actionlint`; first run on GitHub passed every job (2026-10-24)
 - [x] Dockerfile: single multi-stage image (SPA + API, same origin), non-root, health check; verified locally with the live browser flow and no CSP violations
 - [~] Hosting: free tiers checked (Render + Neon, 2026-10-24), same-origin by construction, wake strategy built (token-protected trigger + GitHub Actions cron) and tested; prod profile tuned so a serverless DB can sleep (pool drains to 0 connections, verified). **Not deployed**: needs the owner's Render and Neon accounts (`docs/deployment.md`)
 - [x] Playwright E2E: 30 mocked-API tests (desktop + mobile) for CI, plus a live full-stack spec run against Vite and against the Docker image
