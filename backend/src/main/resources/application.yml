@@ -12,11 +12,22 @@ spring:
     open-in-view: false
     hibernate:
       ddl-auto: validate   # Flyway owns the schema; Hibernate only checks it.
-  autoconfigure:
-    # No user store until Phase 3; stops Boot generating (and logging) a default password.
-    exclude: org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
+    properties:
+      # Loads lazy collections (route lines/stations) for many saved journeys in one query, not N.
+      hibernate.default_batch_fetch_size: 50
+  session:
+    jdbc:
+      initialize-schema: never   # V1 migration creates the Spring Session tables.
+    timeout: 7d
 
 server:
+  servlet:
+    session:
+      cookie:
+        http-only: true
+        same-site: lax
+        # true in production (HTTPS). False locally so the cookie works on http://localhost.
+        secure: ${SESSION_COOKIE_SECURE:false}
   error:
     include-stacktrace: never
     include-message: never
@@ -60,3 +71,10 @@ stepfree:
     stale-max-age: 6h
   cors:
     allowed-origins: ${CORS_ALLOWED_ORIGINS:}
+  auth:
+    # Failed logins allowed per window before further attempts are refused with 429.
+    max-failures-per-email: 5
+    max-failures-per-ip: 50
+    failure-window: 15m
+  saved-journeys:
+    max-per-user: 50

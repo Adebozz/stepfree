@@ -2,7 +2,7 @@
 
 Accessible journey planning and disruption monitoring for London, built on the official TfL Unified API.
 
-> **Status: Phase 2 of 6 complete.** Step-free journey planning, station accessibility (including lift outages), live line status and disruptions work end to end in the React frontend. Accounts, saved journeys and alerts are still to come; see [`docs/implementation-checklist.md`](docs/implementation-checklist.md).
+> **Status: Phase 3 of 6 complete.** Step-free journey planning, station accessibility (including lift outages), live line status and disruptions, plus accounts and saved journeys, work end to end. Disruption alerts for saved journeys are next; see [`docs/implementation-checklist.md`](docs/implementation-checklist.md).
 
 ## The problem
 

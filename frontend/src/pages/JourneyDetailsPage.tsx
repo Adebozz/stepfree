@@ -9,6 +9,7 @@ import { JourneyDetails } from '../components/JourneyDetails'
 import { LineProblems } from '../components/JourneyResults'
 import { LoadingSkeleton } from '../components/LoadingSkeleton'
 import { RouteChain } from '../components/RouteChain'
+import { SaveJourneyPanel } from '../components/SaveJourneyPanel'
 import { accessibilityLabel } from '../features/journey/options'
 import { fromUrlParams, toApiParams } from '../features/journey/search'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
@@ -110,6 +111,8 @@ export function JourneyDetailsPage() {
       </section>
 
       <LineProblems lines={lineStatuses} />
+
+      <SaveJourneyPanel search={search} journey={journey} />
 
       <div className="rounded-xl border border-navy-100 bg-white p-5 shadow-sm">
         <JourneyDetails journey={journey} />

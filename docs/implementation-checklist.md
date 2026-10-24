@@ -37,12 +37,14 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - [x] Verified end-to-end against live TfL (headless browser smoke test of every page, 2026-10-24)
 
 ## Phase 3 — Authentication and persistence
-- [ ] `app_user`, Spring Session JDBC migrations
-- [ ] Register / login / logout / me / profile / delete
-- [ ] CSRF + session cookie config
-- [ ] Saved journeys CRUD with route lines/stations
-- [ ] Ownership checks + tests that user A can't touch user B's data
-- [ ] Login rate limiting
+- [x] `app_user`, Spring Session JDBC migrations
+- [x] Register / login / logout / me / profile / delete
+- [x] CSRF + session cookie config
+- [x] Saved journeys CRUD with route lines/stations
+- [x] Ownership checks + tests that user A can't touch user B's data
+- [x] Login rate limiting
+- [x] Frontend: sign in, register, account, saved journeys, save from journey details
+- [x] Verified end-to-end in a browser against live TfL (2026-10-24)
 
 ## Phase 4 — Monitoring and notifications
 - [ ] Disruption normalisation + identity/content hashing
@@ -65,7 +67,10 @@ Legend: `[x]` done and verified · `[~]` in progress · `[ ]` not started. A box
 - [ ] README, screenshots, final docs
 
 ## Known issues / notes
-- Flyway logs "No migrations found" until Phase 3 adds the first tables. Expected.
 - The lift-disruption endpoint is undocumented by TfL (see `feasibility.md` §1.7).
 - TfL cuts station accessibility notes (`AddtionalInformation`) at 255 characters. The UI marks cut-off notes as "TfL's text ends here" instead of showing them as if complete.
 - TfL often publishes the same lift notice as both a lift disruption and a station disruption. The station page shows it once, under lift outages.
+- Login rate limiting is in memory: limits are per instance and reset on restart. Fine for one instance; several would need a shared store.
+- Behind a reverse proxy, the rate limiter sees the proxy's IP until forwarded headers are configured (`server.forward-headers-strategy`, Phase 6).
+- Registration reveals whether an email is already registered (409). Unavoidable without email verification; login never reveals it.
+- `GET /api/v1/auth/me` answers 401 when signed out, which browsers log in the console. Correct behaviour, not an error.

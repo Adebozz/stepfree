@@ -1,6 +1,8 @@
 package com.stepfreelondon.common.error;
 
 import java.net.URI;
+import java.time.Duration;
+import java.util.Optional;
 
 import org.springframework.http.HttpStatus;
 
@@ -32,5 +34,10 @@ public abstract class ProblemException extends RuntimeException {
 
     public String title() {
         return title;
+    }
+
+    /** When the client may retry; sent as a {@code Retry-After} header. Empty for most problems. */
+    public Optional<Duration> retryAfter() {
+        return Optional.empty();
     }
 }

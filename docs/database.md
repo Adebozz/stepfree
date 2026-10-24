@@ -6,9 +6,8 @@ PostgreSQL 17, schema managed only by Flyway migrations in `backend/src/main/res
 
 | Migration | Contents | Phase |
 |---|---|---|
-| — | Phase 1 has no tables. Flyway and Postgres are wired up and verified by an integration test. | 1 |
-| planned `V1` | `app_user`, Spring Session tables | 3 |
-| planned `V2` | `station`, `saved_journey`, `saved_journey_line`, `saved_journey_station` | 3 |
+| `V1__users_and_sessions` | `app_user`, `spring_session`, `spring_session_attributes` | 3 ✅ |
+| `V2__saved_journeys` | `station`, `saved_journey`, `saved_journey_line`, `saved_journey_station` | 3 ✅ |
 | planned `V3` | disruption, monitoring, alerts, notifications | 4 |
 
 ## Proposed schema (refined from the original requirements)
@@ -16,6 +15,9 @@ PostgreSQL 17, schema managed only by Flyway migrations in `backend/src/main/res
 Changes from the original proposal, and why:
 
 - `user` → **`app_user`** (`user` is a reserved word in PostgreSQL).
+- Email: **`text` + `CHECK (email = lower(email))`** instead of `citext` (changed in Phase 3). The application lower-cases emails, the CHECK makes the database enforce it, so the plain `UNIQUE` is case-insensitive. Hibernate's `ddl-auto=validate` doesn't understand `citext`, and this needs no extension.
+- Spring Session tables are created **by Flyway** (copied from `spring-session-jdbc` 4.1.1's `schema-postgresql.sql`), with `spring.session.jdbc.initialize-schema=never`. `principal_name` holds the **user id**, so a user's sessions can be found and deleted (password change, account deletion).
+- Route tables have a **`position`** column so lines and stops keep travel order.
 - `station` gets **`ics_code`**: TfL's journey planner needs it for hub stations (see `feasibility.md` §1.2). It stores only stations referenced by saved journeys, not the whole network.
 - `saved_journey` gets **child tables for the chosen route** (`saved_journey_line`, `saved_journey_station`). This is what makes "is this journey affected?" answerable without guessing (risk R6).
 - `disruption_event` uses **`identity_key` + `content_hash`** instead of a single fingerprint, because TfL supplies no ids (§1.8). The key says *which* disruption it is; the hash says whether its content changed.
@@ -24,7 +26,7 @@ Changes from the original proposal, and why:
 - Dedup constraints: `journey_alert` unique on `(saved_journey_id, disruption_event_id, alert_type, event_revision)`; `notification_delivery` unique on `(journey_alert_id, channel)`.
 
 ```
-app_user(id uuid pk, full_name, email citext unique, password_hash, enabled, created_at, updated_at)
+app_user(id uuid pk, full_name, email text unique check(lower), password_hash, enabled, created_at, updated_at)
 
 station(id uuid pk, tfl_station_id text unique, ics_code text, name, latitude, longitude,
         modes text[], zone text, last_synced_at)
@@ -34,8 +36,8 @@ saved_journey(id uuid pk, user_id fk→app_user ON DELETE CASCADE, name,
               accessibility_preferences text[], journey_preference text,
               monitoring_enabled bool, created_at, updated_at,
               unique(user_id, name))
-saved_journey_line(saved_journey_id fk CASCADE, line_id text, pk(saved_journey_id, line_id))
-saved_journey_station(saved_journey_id fk CASCADE, tfl_station_id text, role text,  -- ORIGIN|INTERCHANGE|DESTINATION|INTERMEDIATE
+saved_journey_line(saved_journey_id fk CASCADE, line_id text, position int, pk(saved_journey_id, line_id))
+saved_journey_station(saved_journey_id fk CASCADE, tfl_station_id text, role text, position int,  -- ORIGIN|INTERCHANGE|DESTINATION|INTERMEDIATE
                       pk(saved_journey_id, tfl_station_id))
 
 disruption_event(id uuid pk, source text,             -- LINE_STATUS|STOP_POINT|LIFT
@@ -67,4 +69,4 @@ Indexes planned for: `saved_journey(user_id)`, `saved_journey_line(line_id)`, `s
 
 ## Deletion and retention
 
-Deleting an account hard-deletes the `app_user` row. `ON DELETE CASCADE` removes saved journeys, alerts, deliveries and preferences, and the user's sessions are invalidated. Disruption events contain no personal data and are kept. Resolved events older than 90 days are eligible for cleanup (Phase 4).
+Deleting an account (password required) hard-deletes the `app_user` row. `ON DELETE CASCADE` removes saved journeys and their routes (and, from Phase 4, alerts, deliveries and preferences). The user's sessions are deleted through Spring Session's principal-name index; that step is in the application because `spring_session.principal_name` can't be a foreign key. Verified by `AuthIntegrationTest` and `SavedJourneyIntegrationTest`. Disruption events contain no personal data and are kept. Resolved events older than 90 days are eligible for cleanup (Phase 4).

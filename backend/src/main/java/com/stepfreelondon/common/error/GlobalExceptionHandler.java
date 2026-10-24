@@ -69,7 +69,9 @@ public class GlobalExceptionHandler extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(ProblemException.class)
     ResponseEntity<ProblemDetail> domainProblem(ProblemException e) {
-        return ResponseEntity.status(e.status()).body(problem(e.status(), e.type(), e.title(), e.getMessage()));
+        ResponseEntity.BodyBuilder response = ResponseEntity.status(e.status());
+        e.retryAfter().ifPresent(d -> response.header(HttpHeaders.RETRY_AFTER, Long.toString(Math.max(1, d.toSeconds()))));
+        return response.body(problem(e.status(), e.type(), e.title(), e.getMessage()));
     }
 
     @ExceptionHandler(RequestValidationException.class)

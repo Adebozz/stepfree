@@ -58,3 +58,11 @@ export function modeLabel(mode: string | null | undefined): string {
   if (!mode) return 'Unknown'
   return MODE_LABELS[mode] ?? mode.replace(/-/g, ' ').replace(/^\w/, (c) => c.toUpperCase())
 }
+
+/** A readable name from a line id when TfL's name isn't to hand, e.g. "hammersmith-city" → "Hammersmith City". */
+export function lineNameFromId(lineId: string): string {
+  return lineId
+    .split('-')
+    .map((part) => part.charAt(0).toUpperCase() + part.slice(1))
+    .join(' ')
+}

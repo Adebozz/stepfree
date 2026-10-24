@@ -1,4 +1,4 @@
-import type { JourneyOption, LineStatus, StationAccessibility } from '../api/types'
+import type { JourneyOption, LineStatus, SavedJourney, StationAccessibility, User } from '../api/types'
 
 /** Shaped like real backend responses for Wembley Park → King's Cross (step-free), 23 Oct 2026. */
 export const stepFreeJourney: JourneyOption = {
@@ -83,4 +83,28 @@ export const wembleyCentralAccessibility: StationAccessibility = {
   ],
   disruptionDataAvailable: true,
   stationInfoRetrievedAt: '2026-10-23T16:00:00Z',
+}
+
+export const signedInUser: User = {
+  id: '6f1c2a9e-1111-4c6b-9d55-2b9a2f0c0001',
+  fullName: 'Ada Lovelace',
+  email: 'ada@example.com',
+  createdAt: '2026-10-24T09:00:00Z',
+}
+
+export const savedCommute: SavedJourney = {
+  id: '0b7d5c1e-2222-4f0a-8a11-5d2e8f9a0002',
+  name: 'Home to work',
+  origin: { id: '940GZZLUWYP', icsCode: '1000257', name: 'Wembley Park' },
+  destination: { id: 'HUBKGX', icsCode: '1000129', name: "King's Cross & St Pancras International" },
+  accessibility: ['STEP_FREE_TO_PLATFORM'],
+  preference: null,
+  monitoringEnabled: true,
+  lineIds: ['metropolitan'],
+  stations: [
+    { id: '940GZZLUWYP', role: 'ORIGIN' },
+    { id: '940GZZLUKSX', role: 'DESTINATION' },
+  ],
+  createdAt: '2026-10-24T09:05:00Z',
+  updatedAt: '2026-10-24T09:05:00Z',
 }

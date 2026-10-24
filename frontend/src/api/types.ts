@@ -193,3 +193,49 @@ export interface JourneyPlan {
   appliedAccessibility: AccessibilityPreference[]
   stopMessages: string[]
 }
+
+// ---- Account ----
+
+export interface User {
+  id: string
+  fullName: string
+  email: string
+  createdAt: string
+}
+
+// ---- Saved journeys ----
+
+export type RouteStationRole = 'ORIGIN' | 'INTERCHANGE' | 'INTERMEDIATE' | 'DESTINATION'
+
+export interface RouteStop {
+  id: string
+  role: RouteStationRole
+}
+
+export interface SavedRoute {
+  lineIds: string[]
+  stations: RouteStop[]
+}
+
+export interface SavedJourney {
+  id: string
+  name: string
+  origin: { id: string; icsCode: string | null; name: string }
+  destination: { id: string; icsCode: string | null; name: string }
+  accessibility: AccessibilityPreference[]
+  preference: JourneyPreference | null
+  monitoringEnabled: boolean
+  lineIds: string[]
+  stations: RouteStop[]
+  createdAt: string
+  updatedAt: string
+}
+
+export interface CreateSavedJourney {
+  name: string
+  originId: string
+  destinationId: string
+  accessibility: AccessibilityPreference[]
+  preference?: JourneyPreference
+  route: SavedRoute
+}
