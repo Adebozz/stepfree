@@ -1,0 +1,1893 @@
+{
+ "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+ "naptanId": "940GZZLUWYP",
+ "modes": [
+  "tube"
+ ],
+ "icsCode": "1000257",
+ "stopType": "NaptanMetroStation",
+ "stationNaptan": "940GZZLUWYP",
+ "lines": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+   "id": "jubilee",
+   "name": "Jubilee",
+   "uri": "/Line/jubilee",
+   "type": "Line",
+   "crowding": {
+    "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+   },
+   "routeType": "Unknown",
+   "status": "Unknown"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+   "id": "metropolitan",
+   "name": "Metropolitan",
+   "uri": "/Line/metropolitan",
+   "type": "Line",
+   "crowding": {
+    "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+   },
+   "routeType": "Unknown",
+   "status": "Unknown"
+  }
+ ],
+ "lineGroup": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+   "stationAtcoCode": "940GZZLUWYP",
+   "lineIdentifier": [
+    "jubilee"
+   ]
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+   "stationAtcoCode": "940GZZLUWYP",
+   "lineIdentifier": [
+    "metropolitan"
+   ]
+  }
+ ],
+ "lineModeGroups": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.LineModeGroup, Tfl.Api.Presentation.Entities",
+   "modeName": "tube",
+   "lineIdentifier": [
+    "jubilee",
+    "metropolitan"
+   ]
+  }
+ ],
+ "status": true,
+ "id": "940GZZLUWYP",
+ "commonName": "Wembley Park Underground Station",
+ "placeType": "StopPoint",
+ "additionalProperties": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "ServiceInfo",
+   "key": "Night",
+   "sourceSystemKey": "TransXchangeETL",
+   "value": "yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Boarding Ramps",
+   "sourceSystemKey": "StaticObjects",
+   "value": "yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Gates",
+   "sourceSystemKey": "StaticObjects",
+   "value": "33"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Other Facilities",
+   "sourceSystemKey": "StaticObjects",
+   "value": "taxi ranks outside station, post office style queuing for tickets."
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Car park",
+   "sourceSystemKey": "StaticObjects",
+   "value": "no"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Photo Booths",
+   "sourceSystemKey": "StaticObjects",
+   "value": "0"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Escalators",
+   "sourceSystemKey": "StaticObjects",
+   "value": "0"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Bridge",
+   "sourceSystemKey": "StaticObjects",
+   "value": "yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Help Points",
+   "sourceSystemKey": "StaticObjects",
+   "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Lifts",
+   "sourceSystemKey": "StaticObjects",
+   "value": "5"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Payphones",
+   "sourceSystemKey": "StaticObjects",
+   "value": "2"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Toilets",
+   "sourceSystemKey": "StaticObjects",
+   "value": "yes (male, female, disabled/baby-changing facilities)"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Address",
+   "key": "PhoneNo",
+   "sourceSystemKey": "StaticObjects",
+   "value": "0845 330 9880"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Geo",
+   "key": "Zone",
+   "sourceSystemKey": "StaticObjects",
+   "value": "4"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Cash Machines",
+   "sourceSystemKey": "StaticObjects",
+   "value": "1"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "WiFi",
+   "sourceSystemKey": "StaticObjects",
+   "value": "yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Address",
+   "key": "Address",
+   "sourceSystemKey": "StaticObjects",
+   "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Ticket Halls",
+   "sourceSystemKey": "StaticObjects",
+   "value": "2"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Facility",
+   "key": "Waiting Room",
+   "sourceSystemKey": "StaticObjects",
+   "value": "yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "AccessViaLift",
+   "sourceSystemKey": "LRAD",
+   "value": "Yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "AddtionalInformation",
+   "sourceSystemKey": "LRAD",
+   "value": "If you are travelling to Wembley Park from  stations east of Westminster and require level  access, please ensure that you board the  correct carriage. If you are travelling to  Wembley Park from Green Park and require  level access, please continue to Ki"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "BlueBadgeCarParkSpaces",
+   "sourceSystemKey": "LRAD",
+   "value": "6"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "LimitedCapacityLift",
+   "sourceSystemKey": "LRAD",
+   "value": "No"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "SpecificEntranceRequired",
+   "sourceSystemKey": "LRAD",
+   "value": "No"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "TaxiRankOutsideStation",
+   "sourceSystemKey": "LRAD",
+   "value": "No"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "Accessibility",
+   "key": "Toilet",
+   "sourceSystemKey": "LRAD",
+   "value": "Yes"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "NearestPlaces",
+   "key": "SourceSystemPlaceId",
+   "sourceSystemKey": "StaticObjects",
+   "value": "TaxiRank_5583"
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+   "category": "NearestPlaces",
+   "key": "SourceSystemPlaceId",
+   "sourceSystemKey": "StaticObjects",
+   "value": "CarParks_800497"
+  }
+ ],
+ "children": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "4900ZZLUWYP1",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroEntrance",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [],
+   "lineGroup": [],
+   "lineModeGroups": [],
+   "status": true,
+   "id": "4900ZZLUWYP1",
+   "commonName": "Wembley Park Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "AccessViaLift",
+     "sourceSystemKey": "LRAD",
+     "value": "Yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "AddtionalInformation",
+     "sourceSystemKey": "LRAD",
+     "value": "If you are travelling to Wembley Park from  stations east of Westminster and require level  access, please ensure that you board the  correct carriage. If you are travelling to  Wembley Park from Green Park and require  level access, please continue to Ki"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "BlueBadgeCarParkSpaces",
+     "sourceSystemKey": "LRAD",
+     "value": "6"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "LimitedCapacityLift",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "SpecificEntranceRequired",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "TaxiRankOutsideStation",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "Toilet",
+     "sourceSystemKey": "LRAD",
+     "value": "Yes"
+    }
+   ],
+   "children": [],
+   "lat": 51.56326,
+   "lon": -0.2792
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "4900ZZLUWYP2",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroEntrance",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [],
+   "lineGroup": [],
+   "lineModeGroups": [],
+   "status": true,
+   "id": "4900ZZLUWYP2",
+   "commonName": "Wembley Park Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "AccessViaLift",
+     "sourceSystemKey": "LRAD",
+     "value": "Yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "AddtionalInformation",
+     "sourceSystemKey": "LRAD",
+     "value": "If you are travelling to Wembley Park from  stations east of Westminster and require level  access, please ensure that you board the  correct carriage. If you are travelling to  Wembley Park from Green Park and require  level access, please continue to Ki"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "BlueBadgeCarParkSpaces",
+     "sourceSystemKey": "LRAD",
+     "value": "6"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "LimitedCapacityLift",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "SpecificEntranceRequired",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "TaxiRankOutsideStation",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "Toilet",
+     "sourceSystemKey": "LRAD",
+     "value": "Yes"
+    }
+   ],
+   "children": [],
+   "lat": 51.56297,
+   "lon": -0.27976
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "4900ZZLUWYP3",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroEntrance",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [],
+   "lineGroup": [],
+   "lineModeGroups": [],
+   "status": true,
+   "id": "4900ZZLUWYP3",
+   "commonName": "Wembley Park Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "AccessViaLift",
+     "sourceSystemKey": "LRAD",
+     "value": "Yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "AddtionalInformation",
+     "sourceSystemKey": "LRAD",
+     "value": "If you are travelling to Wembley Park from  stations east of Westminster and require level  access, please ensure that you board the  correct carriage. If you are travelling to  Wembley Park from Green Park and require  level access, please continue to Ki"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "BlueBadgeCarParkSpaces",
+     "sourceSystemKey": "LRAD",
+     "value": "6"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "LimitedCapacityLift",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "SpecificEntranceRequired",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "TaxiRankOutsideStation",
+     "sourceSystemKey": "LRAD",
+     "value": "No"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Accessibility",
+     "key": "Toilet",
+     "sourceSystemKey": "LRAD",
+     "value": "Yes"
+    }
+   ],
+   "children": [],
+   "lat": 51.56298,
+   "lon": -0.27946
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "9400ZZLUWYP",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroAccessArea",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [],
+   "lineGroup": [],
+   "lineModeGroups": [],
+   "status": true,
+   "id": "9400ZZLUWYP",
+   "commonName": "Wembley Park Underground Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    }
+   ],
+   "children": [],
+   "lat": 51.563198,
+   "lon": -0.279262
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "9400ZZLUWYP1",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroPlatform",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+     "id": "jubilee",
+     "name": "Jubilee",
+     "uri": "/Line/jubilee",
+     "type": "Line",
+     "crowding": {
+      "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+     },
+     "routeType": "Unknown",
+     "status": "Unknown"
+    }
+   ],
+   "lineGroup": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+     "stationAtcoCode": "940GZZLUWYP",
+     "lineIdentifier": [
+      "jubilee"
+     ]
+    }
+   ],
+   "lineModeGroups": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineModeGroup, Tfl.Api.Presentation.Entities",
+     "modeName": "tube",
+     "lineIdentifier": [
+      "jubilee"
+     ]
+    }
+   ],
+   "status": true,
+   "id": "9400ZZLUWYP1",
+   "commonName": "Wembley Park Underground Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    }
+   ],
+   "children": [],
+   "lat": 51.563518,
+   "lon": -0.279596
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "9400ZZLUWYP2",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroPlatform",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+     "id": "jubilee",
+     "name": "Jubilee",
+     "uri": "/Line/jubilee",
+     "type": "Line",
+     "crowding": {
+      "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+     },
+     "routeType": "Unknown",
+     "status": "Unknown"
+    }
+   ],
+   "lineGroup": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+     "stationAtcoCode": "940GZZLUWYP",
+     "lineIdentifier": [
+      "jubilee"
+     ]
+    }
+   ],
+   "lineModeGroups": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineModeGroup, Tfl.Api.Presentation.Entities",
+     "modeName": "tube",
+     "lineIdentifier": [
+      "jubilee"
+     ]
+    }
+   ],
+   "status": true,
+   "id": "9400ZZLUWYP2",
+   "commonName": "Wembley Park Underground Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    }
+   ],
+   "children": [],
+   "lat": 51.563518,
+   "lon": -0.279581
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "9400ZZLUWYP3",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroPlatform",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+     "id": "metropolitan",
+     "name": "Metropolitan",
+     "uri": "/Line/metropolitan",
+     "type": "Line",
+     "crowding": {
+      "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+     },
+     "routeType": "Unknown",
+     "status": "Unknown"
+    }
+   ],
+   "lineGroup": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+     "stationAtcoCode": "940GZZLUWYP",
+     "lineIdentifier": [
+      "metropolitan"
+     ]
+    }
+   ],
+   "lineModeGroups": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineModeGroup, Tfl.Api.Presentation.Entities",
+     "modeName": "tube",
+     "lineIdentifier": [
+      "metropolitan"
+     ]
+    }
+   ],
+   "status": true,
+   "id": "9400ZZLUWYP3",
+   "commonName": "Wembley Park Underground Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    }
+   ],
+   "children": [],
+   "lat": 51.563509,
+   "lon": -0.279596
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "9400ZZLUWYP4",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroPlatform",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+     "id": "metropolitan",
+     "name": "Metropolitan",
+     "uri": "/Line/metropolitan",
+     "type": "Line",
+     "crowding": {
+      "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+     },
+     "routeType": "Unknown",
+     "status": "Unknown"
+    }
+   ],
+   "lineGroup": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+     "stationAtcoCode": "940GZZLUWYP",
+     "lineIdentifier": [
+      "metropolitan"
+     ]
+    }
+   ],
+   "lineModeGroups": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineModeGroup, Tfl.Api.Presentation.Entities",
+     "modeName": "tube",
+     "lineIdentifier": [
+      "metropolitan"
+     ]
+    }
+   ],
+   "status": true,
+   "id": "9400ZZLUWYP4",
+   "commonName": "Wembley Park Underground Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    }
+   ],
+   "children": [],
+   "lat": 51.563517,
+   "lon": -0.279567
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.StopPoint, Tfl.Api.Presentation.Entities",
+   "naptanId": "9400ZZLUWYP6",
+   "indicator": "southbound",
+   "modes": [
+    "tube"
+   ],
+   "icsCode": "1000257",
+   "stopType": "NaptanMetroPlatform",
+   "stationNaptan": "940GZZLUWYP",
+   "lines": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.Identifier, Tfl.Api.Presentation.Entities",
+     "id": "metropolitan",
+     "name": "Metropolitan",
+     "uri": "/Line/metropolitan",
+     "type": "Line",
+     "crowding": {
+      "$type": "Tfl.Api.Presentation.Entities.Crowding, Tfl.Api.Presentation.Entities"
+     },
+     "routeType": "Unknown",
+     "status": "Unknown"
+    }
+   ],
+   "lineGroup": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineGroup, Tfl.Api.Presentation.Entities",
+     "stationAtcoCode": "940GZZLUWYP",
+     "lineIdentifier": [
+      "metropolitan"
+     ]
+    }
+   ],
+   "lineModeGroups": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.LineModeGroup, Tfl.Api.Presentation.Entities",
+     "modeName": "tube",
+     "lineIdentifier": [
+      "metropolitan"
+     ]
+    }
+   ],
+   "status": true,
+   "id": "9400ZZLUWYP6",
+   "commonName": "Wembley Park Underground Station",
+   "placeType": "StopPoint",
+   "additionalProperties": [
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Car park",
+     "sourceSystemKey": "StaticObjects",
+     "value": "no"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Cash Machines",
+     "sourceSystemKey": "StaticObjects",
+     "value": "1"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Escalators",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Other Facilities",
+     "sourceSystemKey": "StaticObjects",
+     "value": "taxi ranks outside station, post office style queuing for tickets."
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Bridge",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Toilets",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes (male, female, disabled/baby-changing facilities)"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Lifts",
+     "sourceSystemKey": "StaticObjects",
+     "value": "5"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Waiting Room",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "Address",
+     "sourceSystemKey": "StaticObjects",
+     "value": "Wembley Park Station,London Underground Ltd.,Bridge Road,Wembley,Middlesex,HA9 9AA"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Photo Booths",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Boarding Ramps",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Gates",
+     "sourceSystemKey": "StaticObjects",
+     "value": "33"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Address",
+     "key": "PhoneNo",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0845 330 9880"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "WiFi",
+     "sourceSystemKey": "StaticObjects",
+     "value": "yes"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Help Points",
+     "sourceSystemKey": "StaticObjects",
+     "value": "0 on platforms, 0 in ticket halls, 0 elsewhere"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Payphones",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Facility",
+     "key": "Ticket Halls",
+     "sourceSystemKey": "StaticObjects",
+     "value": "2"
+    },
+    {
+     "$type": "Tfl.Api.Presentation.Entities.AdditionalProperties, Tfl.Api.Presentation.Entities",
+     "category": "Geo",
+     "key": "Zone",
+     "sourceSystemKey": "StaticObjects",
+     "value": "4"
+    }
+   ],
+   "children": [],
+   "lat": 51.565944,
+   "lon": -0.279504
+  }
+ ],
+ "lat": 51.563198,
+ "lon": -0.279262
+}

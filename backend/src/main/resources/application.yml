@@ -1,0 +1,62 @@
+spring:
+  application:
+    name: stepfree-london
+  # Lets `./mvnw spring-boot:run` pick up the repo-root .env without exporting variables by hand.
+  config:
+    import: optional:file:.env[.properties],optional:file:../.env[.properties]
+  datasource:
+    url: ${DB_URL:jdbc:postgresql://localhost:5432/stepfree}
+    username: ${DB_USERNAME:stepfree}
+    password: ${DB_PASSWORD:stepfree}
+  jpa:
+    open-in-view: false
+    hibernate:
+      ddl-auto: validate   # Flyway owns the schema; Hibernate only checks it.
+  autoconfigure:
+    # No user store until Phase 3; stops Boot generating (and logging) a default password.
+    exclude: org.springframework.boot.security.autoconfigure.UserDetailsServiceAutoConfiguration
+
+server:
+  error:
+    include-stacktrace: never
+    include-message: never
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info
+  endpoint:
+    health:
+      probes:
+        enabled: true
+      show-details: never
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+  api-docs:
+    path: /v3/api-docs
+
+logging:
+  pattern:
+    correlation: "[%X{correlationId:-}] "
+
+stepfree:
+  tfl:
+    base-url: https://api.tfl.gov.uk
+    app-key: ${TFL_APP_KEY:}
+    connect-timeout: 3s
+    read-timeout: 8s
+    max-attempts: 2
+    initial-backoff: 250ms
+  cache:
+    station-search-ttl: 24h
+    line-status-ttl: 60s
+    journey-ttl: 60s
+    station-info-ttl: 12h
+    disruption-ttl: 60s
+    lift-status-ttl: 120s
+    stale-max-age: 6h
+  cors:
+    allowed-origins: ${CORS_ALLOWED_ORIGINS:}

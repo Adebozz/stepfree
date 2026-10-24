@@ -1,0 +1,62 @@
+{
+ "$type": "Tfl.Api.Presentation.Entities.SearchResponse, Tfl.Api.Presentation.Entities",
+ "query": "wembley",
+ "total": 4,
+ "matches": [
+  {
+   "$type": "Tfl.Api.Presentation.Entities.MatchedStop, Tfl.Api.Presentation.Entities",
+   "icsId": "1000256",
+   "modes": [
+    "national-rail",
+    "bus",
+    "overground",
+    "tube"
+   ],
+   "zone": "4",
+   "id": "HUBWMB",
+   "name": "Wembley Central",
+   "lat": 51.55232,
+   "lon": -0.296642
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.MatchedStop, Tfl.Api.Presentation.Entities",
+   "icsId": "1000163",
+   "modes": [
+    "overground",
+    "tube",
+    "bus"
+   ],
+   "zone": "4",
+   "id": "HUBNWB",
+   "name": "North Wembley",
+   "lat": 51.56258,
+   "lon": -0.303992
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.MatchedStop, Tfl.Api.Presentation.Entities",
+   "icsId": "1000257",
+   "topMostParentId": "940GZZLUWYP",
+   "modes": [
+    "tube"
+   ],
+   "zone": "4",
+   "id": "940GZZLUWYP",
+   "name": "Wembley Park Underground Station",
+   "lat": 51.563198,
+   "lon": -0.279262
+  },
+  {
+   "$type": "Tfl.Api.Presentation.Entities.MatchedStop, Tfl.Api.Presentation.Entities",
+   "icsId": "1001320",
+   "topMostParentId": "910GWEMBLSM",
+   "modes": [
+    "national-rail"
+   ],
+   "zone": "4",
+   "id": "910GWEMBLSM",
+   "name": "Wembley Stadium Rail Station",
+   "lat": 51.554416,
+   "lon": -0.285608
+  }
+ ]
+}

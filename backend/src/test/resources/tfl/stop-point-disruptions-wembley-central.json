@@ -1,0 +1,38 @@
+[
+ {
+  "$type": "Tfl.Api.Presentation.Entities.DisruptedPoint, Tfl.Api.Presentation.Entities",
+  "atcoCode": "910GWMBY",
+  "fromDate": "2026-09-22T03:26:00Z",
+  "toDate": "2026-10-24T00:29:00Z",
+  "description": "Wembley Central: No Step Free Access - Step free access is not available to the northbound Southern / London Northwestern platform due to a faulty lift. Call us on 0343 222 1234 if you need help planning your journey.",
+  "commonName": "Wembley Central Rail Station",
+  "type": "Interchange Message",
+  "mode": "national-rail",
+  "stationAtcoCode": "910GWMBY",
+  "appearance": "RealTime"
+ },
+ {
+  "$type": "Tfl.Api.Presentation.Entities.DisruptedPoint, Tfl.Api.Presentation.Entities",
+  "atcoCode": "910GWMBY",
+  "fromDate": "2026-09-22T03:26:00Z",
+  "toDate": "2026-10-24T00:29:00Z",
+  "description": "Wembley Central: No Step Free Access - Step free access is not available to the northbound Southern / London Northwestern platform due to a faulty lift. Call us on 0343 222 1234 if you need help planning your journey.",
+  "commonName": "Wembley Central Rail Station",
+  "type": "Interchange Message",
+  "mode": "overground",
+  "stationAtcoCode": "910GWMBY",
+  "appearance": "RealTime"
+ },
+ {
+  "$type": "Tfl.Api.Presentation.Entities.DisruptedPoint, Tfl.Api.Presentation.Entities",
+  "atcoCode": "940GZZLUWYC",
+  "fromDate": "2026-09-22T03:26:00Z",
+  "toDate": "2026-10-24T00:29:00Z",
+  "description": "Wembley Central: No Step Free Access - Step free access is not available to the northbound Southern / London Northwestern platform due to a faulty lift. Call us on 0343 222 1234 if you need help planning your journey.",
+  "commonName": "Wembley Central Underground Station",
+  "type": "Interchange Message",
+  "mode": "tube",
+  "stationAtcoCode": "940GZZLUWYC",
+  "appearance": "RealTime"
+ }
+]

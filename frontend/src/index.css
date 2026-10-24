@@ -1,0 +1,67 @@
+@import 'tailwindcss';
+
+/*
+ * Design tokens. Text/background pairs used together meet WCAG 2.2 AA (4.5:1 for body text):
+ * navy-900 on white 15.9:1, slate-600 on white 7.5:1, teal-700 on white 5.5:1,
+ * amber-800 on amber-50 7.6:1, red-800 on red-50 8.3:1, green-800 on green-50 7.4:1.
+ */
+@theme {
+  --font-sans: 'Inter', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+
+  --color-navy-50: #f2f5fa;
+  --color-navy-100: #e1e8f3;
+  --color-navy-200: #c3d0e6;
+  --color-navy-700: #1d3a66;
+  --color-navy-800: #132b4f;
+  --color-navy-900: #0b1f3a;
+  --color-navy-950: #06142a;
+
+  --color-brand: #1d5fd1;
+  --color-brand-dark: #1649a6;
+  --color-accent: #0f766e;
+  --color-accent-light: #2dd4bf;
+
+  --animate-fade-in: fade-in 180ms ease-out both;
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+      transform: translateY(4px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+}
+
+@layer base {
+  html {
+    background-color: var(--color-navy-50);
+    color: var(--color-navy-900);
+    -webkit-text-size-adjust: 100%;
+  }
+
+  body {
+    min-height: 100dvh;
+    overflow-x: hidden;
+  }
+
+  /* One consistent, clearly visible focus ring for every interactive element. */
+  :focus-visible {
+    outline: 3px solid var(--color-brand);
+    outline-offset: 2px;
+    border-radius: 6px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,16 @@
+# Production overrides. Activate with SPRING_PROFILES_ACTIVE=prod.
+spring:
+  datasource:
+    # No defaults in production: a missing variable fails startup instead of using dev credentials.
+    url: ${DB_URL}
+    username: ${DB_USERNAME}
+    password: ${DB_PASSWORD}
+
+springdoc:
+  swagger-ui:
+    enabled: false
+
+logging:
+  structured:
+    format:
+      console: ecs   # JSON logs, including the correlationId MDC field
