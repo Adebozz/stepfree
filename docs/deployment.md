@@ -68,6 +68,22 @@ Trade-offs to state plainly:
 
 **Not done:** this guide has not been carried out against real Render and Neon accounts. That needs the owner's accounts. Everything up to that point was verified locally with the production image: prod profile, SPA fallback, security headers, the trigger, and the full browser flow against live TfL.
 
+## Always-on server
+
+`deploy/` runs the app, PostgreSQL and Caddy (automatic HTTPS) with Docker Compose on one small server, with the in-process scheduler on instead of the wake-up workflow. Only Caddy publishes ports.
+
+1. Create an Ubuntu 24.04 server with at least 4 GB RAM and your SSH key.
+2. Copy `deploy/server-setup.sh` to the server and run it as root. It hardens SSH, enables the firewall and unattended upgrades, installs Docker, generates `deploy/.env`, starts the stack, schedules a daily database dump and prints the site address.
+3. Optional: set `TFL_APP_KEY` and the `MAIL_*` values in `/opt/stepfree/deploy/.env`, then run `docker compose up -d` in that folder.
+
+To release a new version:
+
+```bash
+cd /opt/stepfree && git pull --ff-only && cd deploy && docker compose up -d --build
+```
+
+The default address is a free `sslip.io` hostname derived from the server's IP. To use your own domain, point its DNS at the server and change `SITE_ADDRESS`. Database dumps stay on the server, so they don't protect against losing it.
+
 ## CI and dependency scanning
 
 - `ci.yml`, on push and PR:

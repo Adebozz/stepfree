@@ -1,0 +1,62 @@
+# Production stack for an always-on server. See docs/deployment.md.
+# Only Caddy publishes ports: PostgreSQL and the app stay on the private Docker network.
+
+services:
+  postgres:
+    image: postgres:17-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: stepfree
+      POSTGRES_USER: stepfree
+      POSTGRES_PASSWORD: ${DB_PASSWORD:?set DB_PASSWORD in deploy/.env}
+    volumes:
+      - postgres-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U stepfree -d stepfree"]
+      interval: 5s
+      timeout: 3s
+      retries: 10
+
+  app:
+    build: ..
+    restart: unless-stopped
+    mem_limit: 1g
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      DB_URL: jdbc:postgresql://postgres:5432/stepfree
+      DB_USERNAME: stepfree
+      DB_PASSWORD: ${DB_PASSWORD}
+      TFL_APP_KEY: ${TFL_APP_KEY:-}
+      SESSION_COOKIE_SECURE: "true"
+      MONITORING_ENABLED: "true"
+      APP_BASE_URL: https://${SITE_ADDRESS:?set SITE_ADDRESS in deploy/.env}
+      MAIL_HOST: ${MAIL_HOST:-localhost}
+      MAIL_PORT: ${MAIL_PORT:-587}
+      MAIL_USERNAME: ${MAIL_USERNAME:-}
+      MAIL_PASSWORD: ${MAIL_PASSWORD:-}
+      MAIL_SMTP_AUTH: ${MAIL_SMTP_AUTH:-false}
+      MAIL_STARTTLS: ${MAIL_STARTTLS:-false}
+      MAIL_FROM: ${MAIL_FROM:-alerts@stepfree.local}
+
+  caddy:
+    image: caddy:2-alpine
+    restart: unless-stopped
+    depends_on:
+      - app
+    environment:
+      SITE_ADDRESS: ${SITE_ADDRESS}
+    ports:
+      - "80:80"
+      - "443:443"
+      - "443:443/udp"
+    volumes:
+      - ./Caddyfile:/etc/caddy/Caddyfile:ro
+      - caddy-data:/data
+      - caddy-config:/config
+
+volumes:
+  postgres-data:
+  caddy-data:
+  caddy-config:
