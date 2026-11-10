@@ -31,6 +31,8 @@ stepfree:
     read-timeout: 15s
 
 springdoc:
+  api-docs:
+    enabled: false
   swagger-ui:
     enabled: false
 
