@@ -266,6 +266,10 @@ export interface NotificationPreferences {
   monitoringEnabled: boolean
 }
 
+export interface NotificationCapabilities {
+  emailAvailable: boolean
+}
+
 export interface MonitoringStatus {
   schedulerEnabled: boolean
   lastCheckedAt: string | null

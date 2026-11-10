@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.stepfreelondon.auth.AuthUser;
 import com.stepfreelondon.notification.dto.AlertListDto;
+import com.stepfreelondon.notification.dto.NotificationCapabilitiesDto;
 import com.stepfreelondon.notification.dto.NotificationPreferencesDto;
 
 @Tag(name = "Alerts and notifications")
@@ -27,9 +28,11 @@ import com.stepfreelondon.notification.dto.NotificationPreferencesDto;
 class NotificationController {
 
     private final NotificationService service;
+    private final NotificationProperties properties;
 
-    NotificationController(NotificationService service) {
+    NotificationController(NotificationService service, NotificationProperties properties) {
         this.service = service;
+        this.properties = properties;
     }
 
     @Operation(summary = "The signed-in user's journey alerts, newest first, with the unread count")
@@ -52,6 +55,12 @@ class NotificationController {
     ResponseEntity<Void> markAllRead(@AuthenticationPrincipal AuthUser user) {
         service.markAllRead(user.id());
         return ResponseEntity.noContent().build();
+    }
+
+    @Operation(summary = "What this deployment can deliver")
+    @GetMapping("/notification-capabilities")
+    NotificationCapabilitiesDto capabilities() {
+        return new NotificationCapabilitiesDto(properties.emailAvailable());
     }
 
     @Operation(summary = "Notification preferences (defaults: email off, monitoring on)")

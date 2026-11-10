@@ -104,6 +104,8 @@ export class MockApi {
       case 'PUT /notification-preferences':
         this.preferences = body as unknown as NotificationPreferences
         return json(this.preferences)
+      case 'GET /notification-capabilities':
+        return json({ emailAvailable: true })
       case 'GET /monitoring/status':
         return json({ schedulerEnabled: true, lastCheckedAt: '2026-10-24T14:21:26Z', lastStatus: 'SUCCEEDED' })
     }

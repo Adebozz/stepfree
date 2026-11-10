@@ -35,4 +35,24 @@ describe('DashboardPage', () => {
     expect(screen.getByText(/will be checked against TfL within a few minutes/)).toBeInTheDocument()
     expect(await axeViolations(container)).toEqual([])
   })
+
+  it('guides a new account to its first saved journey', async () => {
+    mockApi({
+      'GET /auth/me': () => signedInUser,
+      'GET /alerts': () => ({ alerts: [], unreadCount: 0 }),
+      'GET /monitoring/status': () => ({ schedulerEnabled: true, lastCheckedAt: null, lastStatus: null }),
+      'GET /saved-journeys': () => [],
+      'GET /lines/status': () => live([]),
+    })
+    const { container } = renderWithProviders(
+      <RequireAuth>
+        <DashboardPage />
+      </RequireAuth>,
+    )
+
+    expect(await screen.findByRole('heading', { name: 'Save your first journey to get started' })).toBeInTheDocument()
+    expect(screen.getByRole('link', { name: 'Plan a journey' })).toHaveAttribute('href', '/')
+    expect(screen.queryByRole('region', { name: 'Unread alerts' })).not.toBeInTheDocument()
+    expect(await axeViolations(container)).toEqual([])
+  })
 })

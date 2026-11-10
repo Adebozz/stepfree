@@ -12,7 +12,7 @@ function renderAt(route: string) {
     <Routes>
       <Route path="/sign-in" element={<SignInPage />} />
       <Route path="/saved" element={<p>Saved journeys page</p>} />
-      <Route path="/" element={<p>Home page</p>} />
+      <Route path="/dashboard" element={<p>Dashboard page</p>} />
     </Routes>,
     { route },
   )
@@ -39,6 +39,26 @@ describe('SignInPage', () => {
     expect(await screen.findByText('Saved journeys page')).toBeInTheDocument()
   })
 
+  it('goes to the dashboard when no page asked for sign-in', async () => {
+    document.cookie = 'XSRF-TOKEN=t; path=/'
+    mockApi({ 'GET /auth/me': () => problem(401, {}), 'POST /auth/login': () => signedInUser })
+    const user = userEvent.setup()
+    renderAt('/sign-in')
+
+    await user.type(await screen.findByLabelText('Email'), 'ada@example.com')
+    await user.type(screen.getByLabelText('Password'), 'correct horse battery')
+    await user.click(screen.getByRole('button', { name: 'Sign in' }))
+
+    expect(await screen.findByText('Dashboard page')).toBeInTheDocument()
+  })
+
+  it('explains what an account is for', async () => {
+    mockApi({ 'GET /auth/me': () => problem(401, {}) })
+    renderAt('/sign-in')
+
+    expect(await screen.findByRole('heading', { name: 'What you get with an account' })).toBeInTheDocument()
+  })
+
   it("shows the server's message when sign-in fails", async () => {
     document.cookie = 'XSRF-TOKEN=t; path=/'
     mockApi({
@@ -59,7 +79,7 @@ describe('SignInPage', () => {
     mockApi({ 'GET /auth/me': () => signedInUser })
     renderAt('/sign-in?next=https%3A%2F%2Fevil.example')
 
-    expect(await screen.findByText('Home page')).toBeInTheDocument()
+    expect(await screen.findByText('Dashboard page')).toBeInTheDocument()
   })
 
   it('validates before calling the server', async () => {

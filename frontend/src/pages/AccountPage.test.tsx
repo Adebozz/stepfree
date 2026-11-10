@@ -17,6 +17,7 @@ describe('AccountPage alert settings', () => {
     mockApi({
       'GET /auth/me': () => signedInUser,
       'GET /notification-preferences': () => ({ emailEnabled: false, monitoringEnabled: true }),
+      'GET /notification-capabilities': () => ({ emailAvailable: true }),
       'PUT /notification-preferences': ({ body }) => {
         saved = body
         return body
@@ -33,6 +34,18 @@ describe('AccountPage alert settings', () => {
 
     expect(email).toBeChecked()
     await waitFor(() => expect(saved).toEqual({ emailEnabled: true, monitoringEnabled: true }))
+  })
+
+  it('does not offer email when the server cannot send it', async () => {
+    mockApi({
+      'GET /auth/me': () => signedInUser,
+      'GET /notification-preferences': () => ({ emailEnabled: false, monitoringEnabled: true }),
+      'GET /notification-capabilities': () => ({ emailAvailable: false }),
+    })
+    renderWithProviders(<AccountPage />)
+
+    expect(await screen.findByText('Alerts appear on your Alerts page.')).toBeInTheDocument()
+    expect(screen.queryByRole('checkbox', { name: 'Email me when an alert is created' })).not.toBeInTheDocument()
   })
 
   it('rolls the switch back and explains when saving fails', async () => {

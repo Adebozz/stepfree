@@ -17,10 +17,11 @@ const schema = z.object({ name: z.string().trim().min(1, 'Give this journey a na
 interface SaveJourneyPanelProps {
   search: JourneySearch
   journey: JourneyOption
+  headingLevel?: 'h2' | 'h4'
 }
 
 /** Saves the chosen option's route, so later disruption checks can match its exact lines and stations. */
-export function SaveJourneyPanel({ search, journey }: SaveJourneyPanelProps) {
+export function SaveJourneyPanel({ search, journey, headingLevel: Heading = 'h2' }: SaveJourneyPanelProps) {
   const user = useCurrentUser()
   const location = useLocation()
   const save = useCreateSavedJourney()
@@ -34,10 +35,10 @@ export function SaveJourneyPanel({ search, journey }: SaveJourneyPanelProps) {
 
   const container = 'rounded-xl border border-navy-100 bg-white p-5 shadow-sm'
   const heading = (
-    <h2 className="flex items-center gap-2 font-semibold text-navy-900">
+    <Heading className="flex items-center gap-2 font-semibold text-navy-900">
       <Bookmark aria-hidden="true" className="size-5" />
       Save this journey
-    </h2>
+    </Heading>
   )
 
   if (!user.data) {

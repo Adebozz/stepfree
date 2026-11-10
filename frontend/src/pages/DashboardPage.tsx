@@ -9,6 +9,7 @@ import type { LineStatus, SavedJourney } from '../api/types'
 import { AlertItem } from '../components/AlertItem'
 import { EmptyState } from '../components/EmptyState'
 import { ErrorState } from '../components/ErrorState'
+import { FirstJourneyGuide } from '../components/FirstJourneyGuide'
 import { LoadingSkeleton } from '../components/LoadingSkeleton'
 import { MonitoringNote } from '../components/MonitoringNote'
 import { ServiceLevelBadge } from '../components/ServiceLevelBadge'
@@ -29,14 +30,18 @@ export function DashboardPage() {
   const lineStatus = useLineStatus()
   const lines = new Map((lineStatus.data?.data ?? []).map((line) => [line.id, line]))
   const unread = (alerts.data?.alerts ?? []).filter((alert) => !alert.read)
+  const isNewAccount = journeys.data?.length === 0 && alerts.data?.alerts.length === 0
 
   return (
     <div className="space-y-6">
       <header className="space-y-1">
         <h1 className="text-2xl font-bold text-navy-900">{user ? `Hello, ${user.fullName.split(' ')[0]}` : 'Dashboard'}</h1>
-        <MonitoringNote />
+        {!isNewAccount && <MonitoringNote />}
       </header>
 
+      {isNewAccount ? (
+        <FirstJourneyGuide />
+      ) : (
       <div className="grid gap-6 lg:grid-cols-2">
         <section aria-labelledby="dash-alerts-heading" className={card}>
           <div className="flex items-baseline justify-between gap-3">
@@ -108,6 +113,7 @@ export function DashboardPage() {
           </div>
         </section>
       </div>
+      )}
     </div>
   )
 }

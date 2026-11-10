@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router'
 import { z } from 'zod'
 
 import { safeNextPath, useCurrentUser, useRegister } from '../api/account'
+import { AccountBenefits } from '../components/AccountBenefits'
 import { FormError } from '../components/FormError'
 import { TextField } from '../components/TextField'
 import { newPasswordSchema } from '../features/account/schemas'
@@ -26,7 +27,7 @@ type Values = z.infer<typeof schema>
 export function RegisterPage() {
   useDocumentTitle('Create an account')
   const [params] = useSearchParams()
-  const next = safeNextPath(params.get('next'))
+  const next = safeNextPath(params.get('next'), '/dashboard')
   const navigate = useNavigate()
   const user = useCurrentUser()
   const registerAccount = useRegister()
@@ -39,9 +40,10 @@ export function RegisterPage() {
   if (user.data) return <Navigate to={next} replace />
 
   return (
-    <div className="mx-auto max-w-md">
+    <div className="mx-auto grid max-w-4xl items-start gap-8 lg:grid-cols-2 lg:gap-12">
+      <div>
       <h1 className="text-2xl font-bold text-navy-900">Create an account</h1>
-      <p className="mt-1 text-slate-700">Save journeys and, soon, get alerts when they're disrupted.</p>
+      <p className="mt-1 text-slate-700">It&apos;s free, and all you need is an email address.</p>
       <form
         noValidate
         aria-label="Create an account"
@@ -82,6 +84,8 @@ export function RegisterPage() {
           Sign in
         </Link>
       </p>
+      </div>
+      <AccountBenefits />
     </div>
   )
 }

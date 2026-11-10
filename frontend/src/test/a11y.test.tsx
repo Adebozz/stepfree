@@ -51,6 +51,7 @@ describe('accessibility (axe)', () => {
     mockApi({
       'GET /auth/me': () => signedInUser,
       'GET /notification-preferences': () => ({ emailEnabled: false, monitoringEnabled: true }),
+      'GET /notification-capabilities': () => ({ emailAvailable: true }),
     })
     const { container } = renderWithProviders(<AccountPage />)
     await screen.findByRole('checkbox', { name: 'Email me when an alert is created' })

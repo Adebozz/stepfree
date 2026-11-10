@@ -29,6 +29,9 @@ stepfree:
   tfl:
     # On a tiny CPU, parsing TfL's first large response on a cold JVM took ~8 s, right at the dev limit.
     read-timeout: 15s
+  notifications:
+    # Off until an SMTP service is configured, so users aren't offered emails that can't be sent.
+    email-available: ${EMAIL_ALERTS_AVAILABLE:false}
 
 springdoc:
   api-docs:

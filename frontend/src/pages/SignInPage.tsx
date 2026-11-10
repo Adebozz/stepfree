@@ -4,6 +4,7 @@ import { Link, Navigate, useNavigate, useSearchParams } from 'react-router'
 import { z } from 'zod'
 
 import { safeNextPath, useCurrentUser, useSignIn } from '../api/account'
+import { AccountBenefits } from '../components/AccountBenefits'
 import { FormError } from '../components/FormError'
 import { TextField } from '../components/TextField'
 import { useDocumentTitle } from '../hooks/useDocumentTitle'
@@ -18,7 +19,7 @@ type Values = z.infer<typeof schema>
 export function SignInPage() {
   useDocumentTitle('Sign in')
   const [params] = useSearchParams()
-  const next = safeNextPath(params.get('next'))
+  const next = safeNextPath(params.get('next'), '/dashboard')
   const navigate = useNavigate()
   const user = useCurrentUser()
   const signIn = useSignIn()
@@ -31,9 +32,10 @@ export function SignInPage() {
   if (user.data) return <Navigate to={next} replace />
 
   return (
-    <div className="mx-auto max-w-md">
-      <h1 className="text-2xl font-bold text-navy-900">Sign in</h1>
-      <p className="mt-1 text-slate-700">Sign in to see and save your journeys.</p>
+    <div className="mx-auto grid max-w-4xl items-start gap-8 lg:grid-cols-2 lg:gap-12">
+      <div>
+      <h1 className="text-2xl font-bold text-navy-900">Welcome back</h1>
+      <p className="mt-1 text-slate-700">Sign in to see your saved journeys and alerts.</p>
       <form
         noValidate
         aria-label="Sign in"
@@ -63,6 +65,8 @@ export function SignInPage() {
           Create an account
         </Link>
       </p>
+      </div>
+      <AccountBenefits />
     </div>
   )
 }

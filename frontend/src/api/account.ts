@@ -90,7 +90,7 @@ export function useDeleteAccount() {
  * Only same-site paths are allowed as a post-sign-in destination. Without this, a link like
  * /sign-in?next=https://evil.example would send users to another site after they sign in.
  */
-export function safeNextPath(next: string | null): string {
-  if (!next || !next.startsWith('/') || next.startsWith('//') || next.startsWith('/\\')) return '/'
+export function safeNextPath(next: string | null, fallback = '/'): string {
+  if (!next || !next.startsWith('/') || next.startsWith('//') || next.startsWith('/\\')) return fallback
   return next
 }

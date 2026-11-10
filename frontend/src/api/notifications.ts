@@ -1,13 +1,14 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query'
 
 import { apiGet, apiSend } from './client'
-import type { AlertList, MonitoringStatus, NotificationPreferences } from './types'
+import type { AlertList, MonitoringStatus, NotificationCapabilities, NotificationPreferences } from './types'
 
 export const notificationKeys = {
   all: ['notifications'] as const,
   alerts: ['notifications', 'alerts'] as const,
   preferences: ['notifications', 'preferences'] as const,
   monitoring: ['notifications', 'monitoring'] as const,
+  capabilities: ['notifications', 'capabilities'] as const,
 }
 
 /** Alerts arrive from a background job, so the list refreshes while the tab is open. */
@@ -53,6 +54,13 @@ export function useNotificationPreferences() {
   return useQuery({
     queryKey: notificationKeys.preferences,
     queryFn: ({ signal }) => apiGet<NotificationPreferences>('/notification-preferences', undefined, signal),
+  })
+}
+
+export function useNotificationCapabilities() {
+  return useQuery({
+    queryKey: notificationKeys.capabilities,
+    queryFn: ({ signal }) => apiGet<NotificationCapabilities>('/notification-capabilities', undefined, signal),
   })
 }
 

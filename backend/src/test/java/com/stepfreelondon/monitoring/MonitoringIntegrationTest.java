@@ -294,6 +294,12 @@ class MonitoringIntegrationTest {
     }
 
     @Test
+    void capabilitiesSayWhetherEmailCanBeSent() {
+        User user = register(false);
+        assertThat(user.client().get("/api/v1/notification-capabilities").body().get("emailAvailable").asBoolean()).isTrue();
+    }
+
+    @Test
     void monitoringStatusReportsTheLastCompletedRun() {
         User user = register(false);
         Response before = user.client().get("/api/v1/monitoring/status");

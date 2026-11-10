@@ -110,3 +110,4 @@ stepfree:
     retry-backoff: 1m,5m,30m
     batch-size: 50
     stuck-after: 10m
+    email-available: ${EMAIL_ALERTS_AVAILABLE:true}   # Mailpit catches email locally

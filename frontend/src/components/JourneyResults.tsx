@@ -85,7 +85,7 @@ export function JourneyResults({ search }: { search: JourneySearch }) {
             <ol className="space-y-3">
               {plan.data.data.journeys.map((journey, index) => (
                 <li key={index}>
-                  <JourneyCard journey={journey} index={index} detailsHref={`/journey/${index}?${detailsQuery}`} />
+                  <JourneyCard journey={journey} index={index} detailsHref={`/journey/${index}?${detailsQuery}`} search={search} />
                 </li>
               ))}
             </ol>

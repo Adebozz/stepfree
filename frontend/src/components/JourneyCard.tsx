@@ -1,19 +1,25 @@
-import { ArrowRight, Footprints, Repeat, TriangleAlert } from 'lucide-react'
+import { ArrowRight, Bookmark, Footprints, Repeat, TriangleAlert } from 'lucide-react'
+import { useState } from 'react'
 import { Link } from 'react-router'
 
 import type { JourneyOption } from '../api/types'
+import type { JourneySearch } from '../features/journey/search'
 import { formatDuration, formatFare, formatTime } from '../utils/time'
 import { obstacleSummaryText } from '../utils/obstacles'
 import { RouteChain } from './RouteChain'
+import { SaveJourneyPanel } from './SaveJourneyPanel'
 
 interface JourneyCardProps {
   journey: JourneyOption
   index: number
   /** URL of this journey's details page. */
   detailsHref: string
+  /** The search that produced this option. Offers saving when given. */
+  search?: JourneySearch
 }
 
-export function JourneyCard({ journey, index, detailsHref }: JourneyCardProps) {
+export function JourneyCard({ journey, index, detailsHref, search }: JourneyCardProps) {
+  const [saving, setSaving] = useState(false)
   const fare = formatFare(journey.fareTotalPence)
   const headingId = `journey-${index}-heading`
   return (
@@ -51,7 +57,7 @@ export function JourneyCard({ journey, index, detailsHref }: JourneyCardProps) {
         </p>
       )}
 
-      <div className="mt-4">
+      <div className="mt-4 flex flex-wrap items-center gap-x-5 gap-y-2">
         <Link
           to={detailsHref}
           className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:text-brand-dark hover:underline"
@@ -60,7 +66,23 @@ export function JourneyCard({ journey, index, detailsHref }: JourneyCardProps) {
           <span className="sr-only">{`for option ${index + 1}`}</span>
           <ArrowRight aria-hidden="true" className="size-4" />
         </Link>
+        {search && (
+          <button
+            type="button"
+            aria-expanded={saving}
+            onClick={() => setSaving(!saving)}
+            className="inline-flex items-center gap-1.5 text-sm font-semibold text-brand hover:text-brand-dark hover:underline"
+          >
+            <Bookmark aria-hidden="true" className="size-4" />
+            Save <span className="sr-only">{`option ${index + 1}`}</span>
+          </button>
+        )}
       </div>
+      {saving && search && (
+        <div className="mt-4">
+          <SaveJourneyPanel search={search} journey={journey} headingLevel="h4" />
+        </div>
+      )}
     </article>
   )
 }

@@ -25,6 +25,7 @@ Try it locally: `docker compose --profile app up --build`, then http://localhost
 | `SESSION_COOKIE_SECURE` | no | Defaults to `true` in prod. Only set `false` for plain-HTTP testing |
 | `TFL_APP_KEY` | recommended | Raises TfL's limit from 50 to 500 requests/minute |
 | `MAIL_HOST`, `MAIL_PORT`, `MAIL_USERNAME`, `MAIL_PASSWORD`, `MAIL_SMTP_AUTH=true`, `MAIL_STARTTLS=true`, `MAIL_FROM` | for email alerts | Any SMTP provider. Without it, alerts still appear in the app and emails retry, then fail |
+| `EMAIL_ALERTS_AVAILABLE` | with SMTP | Set to `true` once SMTP is configured. Defaults to `false` in production, which hides the email option from users |
 | `APP_BASE_URL` | yes | Public URL, used in email links |
 | `MONITORING_ENABLED` | no | In-process scheduler (default on). Set `false` on a sleeping free tier and rely on the trigger, see below |
 | `MONITORING_TRIGGER_TOKEN` | for the wake-up | Enables `POST /internal/monitoring/run`; `openssl rand -hex 32` |

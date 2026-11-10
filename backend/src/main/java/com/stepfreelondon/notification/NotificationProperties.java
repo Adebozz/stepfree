@@ -13,10 +13,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
  * @param retryBackoff wait before each retry; its size + 1 is the maximum number of attempts
  * @param batchSize    deliveries claimed per dispatch
  * @param stuckAfter   a delivery left SENDING this long (crash mid-send) is retried
+ * @param emailAvailable whether an email service is connected, so the app can offer email alerts
  */
 @ConfigurationProperties("stepfree.notifications")
 record NotificationProperties(String fromAddress, String appBaseUrl, List<Duration> retryBackoff, int batchSize,
-                              Duration stuckAfter) {
+                              Duration stuckAfter, boolean emailAvailable) {
 
     int maxAttempts() {
         return retryBackoff.size() + 1;

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router'
 import { z } from 'zod'
 
 import { useChangePassword, useCurrentUser, useDeleteAccount, useUpdateProfile } from '../api/account'
-import { useNotificationPreferences, useUpdateNotificationPreferences } from '../api/notifications'
+import { useNotificationCapabilities, useNotificationPreferences, useUpdateNotificationPreferences } from '../api/notifications'
 import type { NotificationPreferences, User } from '../api/types'
 import { ErrorState } from '../components/ErrorState'
 import { FormError } from '../components/FormError'
@@ -33,6 +33,7 @@ export function AccountPage() {
 
 function NotificationSettings({ email }: { email: string }) {
   const preferences = useNotificationPreferences()
+  const emailAvailable = useNotificationCapabilities().data?.emailAvailable
   const update = useUpdateNotificationPreferences()
   const change = (changes: Partial<NotificationPreferences>) => {
     if (preferences.data) update.mutate({ ...preferences.data, ...changes })
@@ -59,13 +60,17 @@ function NotificationSettings({ email }: { email: string }) {
             checked={preferences.data.monitoringEnabled}
             onChange={(monitoringEnabled) => change({ monitoringEnabled })}
           />
-          <PreferenceCheckbox
-            id="pref-email"
-            label="Email me when an alert is created"
-            hint={`Sent to ${email}. Alerts always appear on your Alerts page.`}
-            checked={preferences.data.emailEnabled}
-            onChange={(emailEnabled) => change({ emailEnabled })}
-          />
+          {emailAvailable ? (
+            <PreferenceCheckbox
+              id="pref-email"
+              label="Email me when an alert is created"
+              hint={`Sent to ${email}. Alerts always appear on your Alerts page.`}
+              checked={preferences.data.emailEnabled}
+              onChange={(emailEnabled) => change({ emailEnabled })}
+            />
+          ) : (
+            <p className="text-slate-600">Alerts appear on your Alerts page.</p>
+          )}
         </div>
       )}
     </section>
